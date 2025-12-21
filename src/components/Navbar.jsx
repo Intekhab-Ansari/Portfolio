@@ -40,7 +40,11 @@ const Navbar = () => {
                 className=''
             >
                 <Code2 size={24} className='text-blue-500'/>{" "}
-                <span className=''>Time to Program</span>
+                <span className={`p-2 rounded-full transition-colors ${
+                        isDarkMode
+                            ?"text-gray-400 hover:text-white hover:bg-gray-800"
+                            :"text-gray-600 hover:text-gray-900 hover:bg-gray-200"
+                    }`}>Time to Program</span>
             </motion.div>
 
             {/* Desktop Navigation */}
