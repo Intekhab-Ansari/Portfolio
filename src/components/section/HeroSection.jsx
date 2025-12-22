@@ -14,7 +14,6 @@ import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { useTheme } from "../../context/ThemeContext";
 
 import PROFILE_PIC from '../../assets/images/profile-img.jpg'
-import { div, section, text } from "framer-motion/client";
 import { containerVariants, itemVariants } from "../../utils/helper";
 
 const HeroSection = () => {
@@ -116,12 +115,12 @@ const HeroSection = () => {
                             className="text-center"
                         >
                             {/* Profile Image-Mobile */}
-                            <motion.div variants={imageVariants} className="mb-8">
+                            <motion.div variants={imageVariants} className="mb-8 relative z-10">
                                 <div className="w-32 h-32 mx-auto relative">
                                     <motion.div
                                         whileHover={{ scale: 1.05 }}
                                         className={`w-full h-32 rounded-2xl overflow-hidden border-4 ${isDarkMode ? "border-gray-800" : "border-gray-300"
-                                            }shadow-2xl`}
+                                            } shadow-2xl`}
                                     >
                                         <img
                                             src={PROFILE_PIC}
@@ -284,7 +283,7 @@ const HeroSection = () => {
                             <motion.div
                                 variants={textVariants}
                                 className={`text-sm uppercase tracking-widest ${isDarkMode ? "text-gray-500" : "text-gray-600"
-                                    }mb-6`}
+                                    } mb-6`}
                             >
                                 Full Stack Developer
                             </motion.div>
