@@ -146,7 +146,7 @@ export const PROJECTS = [
             "Responsive Developer Portfolio Website ",
         image:Project_img_4,
         tags:["React", "Tailwind", "Framer motion"],
-        liveUrl:"https://intekhabansari.vercel.app/",
+        liveUrl:"https://intekhabansari.netlify.app/",
         githubUrl:"https://github.com/Intekhab-Ansari/Portfolio",
         featured:true,
         category:"Web App",
