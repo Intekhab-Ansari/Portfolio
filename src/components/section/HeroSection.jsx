@@ -174,7 +174,7 @@ const HeroSection = () => {
                                     } mb-8 max-w-xl mx-auto font-light leading-relaxed`}
                             >
                                 I craft beautiful, functional web applications with modern
-                                technologies and throughtful user experiences.
+                                technologies and thoughtful user experiences.
                             </motion.p>
 
                             {/* CTA Button - Mobile */}
@@ -298,7 +298,7 @@ const HeroSection = () => {
                                     Building digital
                                 </span>
                                 <br />
-                                <span className="text-blue-500 font-medium">experiances</span>
+                                <span className="text-blue-500 font-medium">experiences</span>
                                 <br />
                                 <span className={isDarkMode ? "text-white" : "text-gray-900"}>
                                     that matter
@@ -307,11 +307,10 @@ const HeroSection = () => {
 
                             <motion.p
                                 variants={itemVariants}
-                                className={`text-xl ${isDarkMode ? "text-gray-400" : "text-gray-600"
-                                    }mb-12 font-light leading-relaxed max-w-lg`}
+                                className={`text-xl ${isDarkMode ? "text-gray-400" : "text-gray-600"} mb-12 font-light leading-relaxed max-w-lg`}
                             >
-                                I Craft beautiful, function web applications with modern
-                                technology and thoughtful user experiances.
+                                I craft beautiful, functional web applications with modern
+                                technology and thoughtful user experiences.
                             </motion.p>
 
                             {/* CTA Button - Desktop */}

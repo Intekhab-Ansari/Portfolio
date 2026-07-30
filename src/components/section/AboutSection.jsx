@@ -117,8 +117,8 @@ const AboutSection = () => {
                     isDarkMode ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
-                  I belive technology should be a bridge that connects people and
-                  solve real-world problems. my passion lies in crafting digital
+                  I believe technology should be a bridge that connects people and
+                  solves real-world problems. My passion lies in crafting digital
                   experiences that are not just functional, but delightful and 
                   accessible to everyone.
                 </p>
@@ -129,8 +129,8 @@ const AboutSection = () => {
                 >
                   When I'm not coding, you'll find me exploring new frameworks,
                   contributing to open source, or mentoring aspiring developers.
-                  love the constant evolution of web technologies and the endless
-                  possibilies they bring to create meaningful digital experience.
+                  I love the constant evolution of web technologies and the endless
+                  possibilities they bring to create meaningful digital experiences.
                 </p>
               </motion.div>
 

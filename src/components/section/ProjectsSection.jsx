@@ -9,7 +9,7 @@ import{
 } from "lucide-react";
 
 import { useTheme } from '../../context/ThemeContext';
-import {PROJECTS} from "../../utils/data";
+import { PROJECTS, LIVE_PROJECTS } from "../../utils/data";
 import ProjectCards from '../ProjectCards';
 import { containerVariants,itemVariants } from '../../utils/helper';
 const ProjectsSection = () => {
@@ -41,12 +41,12 @@ const ProjectsSection = () => {
 
     <div className='max-w-7xl mx-auto relative z-10'>
 
-      {/* Section Header */}
+      {/* --- Live Work Section Header --- */}
       <motion.div
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className='text-center mb-20'
+        className='text-center mb-16'
       >
         <motion.div
           variants={itemVariants}
@@ -54,15 +54,15 @@ const ProjectsSection = () => {
             isDarkMode ? "text-gray-500" : "text-gray-600"
           } mb-4`}
         >
-          Featured Work
+          Deployed Client Sites
         </motion.div>
 
         <motion.h2
           variants={itemVariants}
           className='text-3xl md:text-5xl font-light mb-6'
         >
-          Recent
-          <span className='text-blue-500 font-medium'>Projects</span>
+          Live
+          <span className='text-blue-500 font-medium ml-2'>Work</span>
         </motion.h2>
 
         <motion.p
@@ -71,8 +71,55 @@ const ProjectsSection = () => {
             isDarkMode ? "text-gray-400" : "text-gray-600"
           } max-w-2xl mx-auto font-light`}
         >
-          A collection of Projects that showcase my experiance in building
-          modern web application and solving complex problems.
+          A selection of active client websites built, optimized, and maintained by me.
+        </motion.p>
+      </motion.div>
+
+      {/* Live Work Grid */}
+      <motion.div
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+        className='grid md:grid-cols-2 gap-8 mb-24'
+      >
+        {LIVE_PROJECTS.map((project, index) => (
+          <ProjectCards key={`live-${project.id}`} project={project} index={index} isDarkMode={isDarkMode} />
+        ))}
+      </motion.div>
+
+      <hr className={`border-t mb-24 ${isDarkMode ? 'border-gray-800' : 'border-gray-200'}`} />
+
+      {/* --- Recent Projects Section Header --- */}
+      <motion.div
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+        className='text-center mb-16'
+      >
+        <motion.div
+          variants={itemVariants}
+          className={`text-sm uppercase tracking-widest ${
+            isDarkMode ? "text-gray-500" : "text-gray-600"
+          } mb-4`}
+        >
+          Featured Personal Work
+        </motion.div>
+
+        <motion.h2
+          variants={itemVariants}
+          className='text-3xl md:text-5xl font-light mb-6'
+        >
+          Recent
+          <span className='text-blue-500 font-medium ml-2'>Projects</span>
+        </motion.h2>
+
+        <motion.p
+          variants={itemVariants}
+          className={`text-lg ${
+            isDarkMode ? "text-gray-400" : "text-gray-600"
+          } max-w-2xl mx-auto font-light`}
+        >
+          A collection of projects that showcase my experience in building modern web applications and solving complex problems.
         </motion.p>
       </motion.div>
 

@@ -1,6 +1,5 @@
 import{
     Code2,
-    // GraduationCap,
     Briefcase,
     Award,
     Rocket,
@@ -16,6 +15,7 @@ import{
     Phone,
     Tags,
     GraduationCap,
+    Globe,
 } from "lucide-react";
 
 import {FiGithub, FiLinkedin, FiTwitter} from "react-icons/fi";
@@ -27,20 +27,28 @@ import Project_img_4 from "../assets/images/profile-img-4.png";
 import Project_img_5 from "../assets/images/profile-img-5.png";
 import Project_img_6 from "../assets/images/profile-img-6.png";
 import Project_img_7 from "../assets/images/profile-img-7.png";
-import { image, label, title } from "framer-motion/client";
-import { color, number } from "framer-motion";
 
+import Live_img_1 from "../assets/images/live-tiffinwales.png";
+import Live_img_2 from "../assets/images/live-quantorra.png";
+import Live_img_3 from "../assets/images/live-theopaljewels.png";
+import Live_img_4 from "../assets/images/live-suyogsaanidhya.png";
+
+import Live_mobile_1 from "../assets/images/live-tiffinwales-mobile.png";
+import Live_mobile_2 from "../assets/images/live-quantorra-mobile.png";
+import Live_mobile_3 from "../assets/images/live-theopaljewels-mobile.png";
+import Live_mobile_4 from "../assets/images/live-suyogsaanidhya-mobile.png";
 export const SKILLS_CATEGORY = [
     {
         title:"Frontend",
         icon:Code2,
         description: "Crafting beautiful, responsive user interfaces",
         skills:[
-            {name:"react",level:90,color:"bg-blue-500"},
+            {name:"React",level:90,color:"bg-blue-500"},
             {name:"JavaScript",level:95,color:"bg-blue-600"},
-            {name:"CSS",level:80,color:"bg-gray-600"},
-            {name:"Tailwind CSS",level:70,color:"bg-cyan-500"},
-            {name:"Framer Motion",level:20,color:"bg-pink-500"},
+            {name:"HTML5",level:95,color:"bg-orange-600"},
+            {name:"CSS3",level:90,color:"bg-gray-600"},
+            {name:"Tailwind CSS",level:85,color:"bg-cyan-500"},
+            {name:"Framer Motion",level:70,color:"bg-pink-500"},
         ],
     },
     {
@@ -48,11 +56,12 @@ export const SKILLS_CATEGORY = [
         icon:Server,
         description:"Building robust server-side solution",
         skills:[
-            {name:"React.js",level:80,color:"bg-gray-500"},
             {name:"Java",level:85,color:"bg-yellow-500"},
-            {name:"Spring-Boot",level:10,color:"bg-green-500"},
-            // {name:"GraphQl",level:80,color:"bg-pink-600"},
-            {name:"REST APIs",level:30,color:"bg-orange-500"},
+            {name:"Spring Boot",level:75,color:"bg-green-500"},
+            {name:"REST APIs",level:80,color:"bg-orange-500"},
+            {name:"Hibernate/JPA",level:70,color:"bg-pink-500"},
+            {name:"Maven",level:75,color:"bg-indigo-500"},
+            {name:"Python",level:50,color:"bg-blue-500"},
         ],
     },
     {
@@ -60,23 +69,30 @@ export const SKILLS_CATEGORY = [
         icon:Database,
         description:"Managing and optimizing data storage",
         skills:[
-            {name:"MySQL",level:88,color:"bg-green-600"},
-            {name:"MongoDb",level:5,color:"bg-blue-700"},
-            // {name:"Redis",level:80,color:"bg-red-500"},
-            // {name:"Prisma",level:82,color:"bg-indigo-600"},
-            // {name:"Firebase",level:78,color:"bg-yellow-600"},          
+            {name:"MySQL",level:90,color:"bg-green-600"},
+            {name:"MongoDB",level:60,color:"bg-blue-700"},
         ],
     },
     {
-        title:"DevOps",
+        title:"DevOps & Tools",
         icon:Cloud,
-        description:"Deploying and scaling application",
+        description:"Development tools and deployment workflow",
         skills:[
-            // {name:"Docker",level:0,color:"bg-blue-600"},
-            // {name:"AWS",level:0,color:"bg-orange-600"},
-            // {name:"Vercel",level:0,color:"bg-gray-900"},
-            // {name:"Git",level:0,color:"bg-orange-700"},
-            // {name:"CI/CD",level:0,color:"bg-purple-600"},
+            {name:"Git",level:85,color:"bg-orange-700"},
+            {name:"GitHub",level:85,color:"bg-gray-700"},
+            {name:"Postman",level:90,color:"bg-orange-500"},
+            {name:"Vite",level:85,color:"bg-purple-600"},
+        ],
+    },
+    {
+        title:"CMS & Hosting",
+        icon:Globe,
+        description:"Building, managing, and deploying WordPress websites",
+        skills:[
+            {name:"WordPress",level:100,color:"bg-blue-500"},
+            {name:"GoDaddy",level:70,color:"bg-green-600"},
+            {name:"cPanel",level:80,color:"bg-orange-500"},
+            {name:"Domain & DNS Management",level:80,color:"bg-teal-500"},
         ],
     },
 ];
@@ -86,20 +102,78 @@ export const TECH_STACK = [
     "HTML",
     "CSS",
     "React",
-    "Apache NetBeans",
-    "Vite",
     "Tailwind CSS",
     "Java",
     "MySQL",
     "SpringBoot",
-    "Postman"
+    "WordPress",
+    "GoDaddy",
+    "cPanel",
+    "Git",
+    "GitHub",
+    "VS Code",
+    "IntelliJ IDEA",
+    "Postman",
+    "Vite",
+    "Figma"
 ];
 
 export const STATS = [
-    {number:"4+", label:"Projects Completed"},
-    {number:"0", label:"Years Experience"},
-    {number:"7+", label:"Technologies"},
+    {number:"10+", label:"Projects Completed"},
+    {number:"1+", label:"Year Experience"},
+    {number:`${SKILLS_CATEGORY.reduce((count, cat) => count + cat.skills.length, 0)}+`, label:"Technologies"},
     {number:"100%", label:"Client Satisfaction"},
+];
+
+export const LIVE_PROJECTS = [
+    {
+        id: 1,
+        title: "Tiffin Wales",
+        description: "A complete online food catering and ordering platform built entirely on WordPress.",
+        image: Live_img_1,
+        mobileImage: Live_mobile_1,
+        tags: ["WordPress", "CMS", "Elementor", "WooCommerce"],
+        liveUrl: "https://tiffinwales.com/",
+        githubUrl: "#",
+        featured: true,
+        category: "WordPress Site",
+    },
+    {
+        id: 2,
+        title: "Quantorra",
+        description: "Business platform built with React and Vite frontend along with a custom PHP backend for the admin dashboard.",
+        image: Live_img_2,
+        mobileImage: Live_mobile_2,
+        tags: ["React", "Vite", "PHP", "Tailwind CSS", "MySQL"],
+        liveUrl: "https://quantorra.co/",
+        githubUrl: "#",
+        featured: true,
+        category: "Full Stack",
+    },
+    {
+        id: 3,
+        title: "The Opal Jewels",
+        description: "A premium luxury jewelry e-commerce storefront built on WordPress.",
+        image: Live_img_3,
+        mobileImage: Live_mobile_3,
+        tags: ["WordPress", "E-Commerce", "Elementor", "WooCommerce"],
+        liveUrl: "https://theopaljewels.com/",
+        githubUrl: "#",
+        featured: true,
+        category: "WordPress Site",
+    },
+    {
+        id: 4,
+        title: "Suyog Saanidhya",
+        description: "Real estate portal featuring a React/Vite web interface and a custom PHP admin dashboard.",
+        image: Live_img_4,
+        mobileImage: Live_mobile_4,
+        tags: ["React", "Vite", "PHP", "MySQL", "Tailwind CSS"],
+        liveUrl: "https://suyogsaanidhya.com/",
+        githubUrl: "#",
+        featured: true,
+        category: "Full Stack",
+    },
 ];
 
 export const PROJECTS = [
@@ -189,22 +263,22 @@ export const JOURNEY_STEPS = [
         color:"bg-green-500",
     },
     {
-        year:"2024",
-        title:"First Intership",
-        company:"Still Seeking",
-        description:
-            "Began learning web development with HTML, CSS, and JavaScript",
-        icon:Briefcase,
-        color:"bg-green-500",
-    },
-    {
         year:"2025",
         title:"Full Stack Developer",
-        company:"Present",
+        company:"Self-Taught + Raj Computers",
         description:
             "Began learning web development with HTML, CSS, and JavaScript",
         icon:Rocket,
         color:"bg-orange-500",
+    },
+    {
+        year:"2026",
+        title:"Web Developer",
+        company:"Social Mantraa",
+        description:
+            "Worked on building responsive and modern web interfaces using HTML, CSS, JavaScript, React, and WordPress.",
+        icon:Briefcase,
+        color:"bg-blue-500",
     },
     {
         year:"2027",
@@ -289,15 +363,18 @@ export const CONTACT_INFO = [
         icon:MapPin,
         label:"Location",
         value:"Goregaon(west), Mumbai-400104",
+        link:"https://maps.google.com/?q=Goregaon(west),+Mumbai-400104",
     },
     {
         icon:Mail,
         label:"Email",
         value:"ansariintekhab47@gmail.com",
+        link:"mailto:ansariintekhab47@gmail.com",
     },
     {
         icon:Phone,
         label:"Phone",
         value:"9594292262",
+        link:"tel:+919594292262",
     },
 ];

@@ -252,28 +252,33 @@ const ContactSection = () => {
                                 Contact Information
                             </h3>
                             {CONTACT_INFO.map((info) => (
-                                <motion.div
+                                <motion.a
                                     key={info.label}
+                                    href={info.link}
+                                    {...(info.label === "Location" && {
+                                        target: "_blank",
+                                        rel: "noopener noreferrer"
+                                    })}
                                     whileHover={{ x: 4 }}
-                                    className={`flex items-center gap-4 p-4 rounded-xl ${
+                                    className={`group flex items-center gap-4 p-4 rounded-xl transition-all duration-300 ${
                                         isDarkMode
-                                            ? "bg-gray-800/40"
-                                            : "bg-gray-50"
+                                            ? "bg-gray-800/40 hover:bg-gray-800/70 text-white"
+                                            : "bg-gray-50 hover:bg-gray-100 text-gray-900"
                                     }`}
                                 >
                                     <info.icon
                                         size={20}
-                                        className="text-blue-500"
+                                        className="text-blue-500 shrink-0"
                                     />
                                     <div>
                                         <p className="text-sm text-gray-500">
                                             {info.label}
                                         </p>
-                                        <p className="font-medium">
+                                        <p className="font-medium group-hover:text-blue-500 transition-colors">
                                             {info.value}
                                         </p>
                                     </div>
-                                </motion.div>
+                                </motion.a>
                             ))}
                         </motion.div>
                     </motion.div>

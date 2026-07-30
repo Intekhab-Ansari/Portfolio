@@ -33,12 +33,25 @@ const ProjectCards = ({project, index, isDarkMode}) => {
             } backdrop-blur-sm`}
         >
             {/* Project Images */}
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden h-48 bg-gray-900/10">
                 <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+
+                {/* Mobile View Overlay */}
+                {project.mobileImage && (
+                    <div className="absolute right-4 bottom-2 w-[85px] h-[155px] rounded-2xl border-[3px] border-neutral-950 overflow-hidden shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-2 z-10 bg-neutral-950">
+                        {/* Simulated Phone Notch */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-2 bg-neutral-950 rounded-b-md z-20" />
+                        <img
+                            src={project.mobileImage}
+                            alt={`${project.title} mobile view`}
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                )}
 
                 {/* Feature Badge */}
                 {project.featured && (
@@ -74,22 +87,26 @@ const ProjectCards = ({project, index, isDarkMode}) => {
                         initial={{y: 20, opacity: 1, scale:1.05}}
                         whileHover={{y:0, opacity:1, scale:1.05}}
                         transition={{duration: 0.3, delay:0.1}}
-                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full items-center space-x-2 text-sm font-medium transition-colors"
+                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full flex items-center space-x-2 text-sm font-medium transition-colors"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
                         <ExternalLink size={16}/>
-                        <span>Live Demo</span>
+                        <span>Visit Site</span>
                     </motion.a>
 
-                    <motion.a
-                        href={project.githubUrl}
-                        initial={{y: 20, opacity: 1, scale:1.05}}
-                        whileHover={{y:0, opacity:1, scale:1.05}}
-                        transition={{duration: 0.3, delay:0.2}}
-                        className={`border-2 border-white text-white hover:bg-white hover:text-gray-900 px-4 py-2 rounded-full flex items-center space-x-2 text-sm font-medium transition-all`}
-                    >
-                        <FiGithub size={16}/>
-                        <span>GitHub</span>
-                    </motion.a>
+                    {project.githubUrl && project.githubUrl !== "#" && (
+                        <motion.a
+                            href={project.githubUrl}
+                            initial={{y: 20, opacity: 1, scale:1.05}}
+                            whileHover={{y:0, opacity:1, scale:1.05}}
+                            transition={{duration: 0.3, delay:0.2}}
+                            className={`border-2 border-white text-white hover:bg-white hover:text-gray-900 px-4 py-2 rounded-full flex items-center space-x-2 text-sm font-medium transition-all`}
+                        >
+                            <FiGithub size={16}/>
+                            <span>GitHub</span>
+                        </motion.a>
+                    )}
                 </motion.div>
             </div>
 

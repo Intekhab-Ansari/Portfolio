@@ -135,7 +135,7 @@ const Footer = () => {
                 />
             </motion.div>
 
-            <div className="relative z-10 px-6 py-16">
+            <div className="relative z-10 px-6 pt-16 pb-32 md:pb-16">
                 <div className="max-w-6xl mx-auto">
                     <motion.div
                         initial="hidden"
@@ -163,7 +163,7 @@ const Footer = () => {
                                 >
                                     <Code2 size={28} />
                                 </motion.div>
-                                <span>Alex Jhonson</span>
+                                <span>Intekhab Ansari</span>
                             </motion.div>
 
                             <p
