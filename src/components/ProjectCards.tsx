@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Trophy } from "lucide-react";
 import { FiGithub } from "react-icons/fi";
 import { Project } from "../utils/types";
 
@@ -28,7 +28,7 @@ const ProjectCards: React.FC<ProjectCardsProps> = ({ project, index, isDarkMode 
             variants={cardVariants}
             whileHover={{
                 y: -8,
-                transition: { duration: 0.3, ease: "easeOut" },
+                transition: { duration: 0.3, ease: "easeOut" as const },
             }}
             className="group relative"
         >
@@ -121,6 +121,16 @@ const ProjectCards: React.FC<ProjectCardsProps> = ({ project, index, isDarkMode 
 
                 {/* Project Content */}
                 <div className="p-6">
+                    {/* SEO Ranking Proof Badge */}
+                    {project.seoBadge && (
+                        <div className="mb-3">
+                            <span className="inline-flex items-center gap-1.5 text-xs px-3 py-1 rounded-full font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 shadow-sm">
+                                <Trophy size={14} className="text-amber-400 shrink-0" />
+                                {project.seoBadge}
+                            </span>
+                        </div>
+                    )}
+
                     <h3 className="text-xl font-medium mb-3 group-hover:text-blue-500 transition-colors">
                         {project.title}
                     </h3>

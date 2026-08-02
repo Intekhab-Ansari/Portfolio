@@ -25,6 +25,7 @@ export interface Project {
   githubUrl: string;
   featured: boolean;
   category: string;
+  seoBadge?: string;
 }
 
 export interface JourneyStep {

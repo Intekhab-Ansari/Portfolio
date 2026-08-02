@@ -15,6 +15,7 @@ import {
     Phone,
     GraduationCap,
     Globe,
+    TrendingUp,
 } from "lucide-react";
 
 import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
@@ -47,6 +48,17 @@ import {
 } from "./types";
 
 export const SKILLS_CATEGORY: SkillCategory[] = [
+    {
+        title: "SEO & Growth Strategy",
+        icon: TrendingUp,
+        description: "Ranking websites Page 1 on Google in USA & India",
+        skills: [
+            { name: "On-Page & Technical SEO", level: 95, color: "bg-emerald-500" },
+            { name: "Google Search Console & SERP", level: 90, color: "bg-blue-600" },
+            { name: "Google Analytics (GA4)", level: 85, color: "bg-amber-500" },
+            { name: "Speed & Core Web Vitals", level: 90, color: "bg-purple-500" },
+        ],
+    },
     {
         title: "CMS & Hosting",
         icon: Globe,
@@ -107,6 +119,9 @@ export const SKILLS_CATEGORY: SkillCategory[] = [
 ];
 
 export const TECH_STACK: string[] = [
+    "Technical SEO",
+    "Google Analytics",
+    "Google Search Console",
     "JavaScript",
     "HTML",
     "CSS",
@@ -138,14 +153,15 @@ export const LIVE_PROJECTS: Project[] = [
     {
         id: 1,
         title: "Tiffin Wales",
-        description: "A complete online food catering and ordering platform built entirely on WordPress.",
+        description: "A complete online food catering and ordering platform built entirely on WordPress. Fully SEO optimized & ranked #1 on Google in the USA (Boston, MA).",
         image: Live_img_1,
         mobileImage: Live_mobile_1,
-        tags: ["WordPress", "CMS", "Elementor", "WooCommerce"],
+        tags: ["WordPress", "SEO Ranked #1 USA", "CMS", "Elementor", "WooCommerce"],
         liveUrl: "https://tiffinwales.com/",
         githubUrl: "#",
         featured: true,
         category: "WordPress Site",
+        seoBadge: "🏆 #1 Google Ranked in USA",
     },
     {
         id: 2,
@@ -162,14 +178,15 @@ export const LIVE_PROJECTS: Project[] = [
     {
         id: 3,
         title: "The Opal Jewels",
-        description: "A premium luxury jewelry e-commerce storefront built on WordPress.",
+        description: "A premium luxury jewelry e-commerce storefront built on WordPress. Fully technical SEO optimized & ranked Page 1 on Google in India.",
         image: Live_img_3,
         mobileImage: Live_mobile_3,
-        tags: ["WordPress", "E-Commerce", "Elementor", "WooCommerce"],
+        tags: ["WordPress", "SEO Page 1 India", "E-Commerce", "WooCommerce"],
         liveUrl: "https://theopaljewels.com/",
         githubUrl: "#",
         featured: true,
         category: "WordPress Site",
+        seoBadge: "🏆 Page 1 Google Ranked in India",
     },
     {
         id: 4,
