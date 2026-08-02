@@ -15,6 +15,7 @@ import { useTheme } from "../../context/ThemeContext";
 
 import PROFILE_PIC from '../../assets/images/profile-img.jpg'
 import { containerVariants, itemVariants } from "../../utils/helper";
+import BackgroundPattern from "../BackgroundPattern";
 
 const HeroSection = () => {
     const { isDarkMode } = useTheme();
@@ -67,43 +68,18 @@ const HeroSection = () => {
 
     return (
         <div
-            className={`min-h-screen transition-all duration-500 ${isDarkMode ? "bg-gray-950 text-white" : "bg-gray-50 text-gray-900"
-                }`}
+            className={`min-h-screen transition-all duration-500 ${isDarkMode ? "bg-slate-950 text-white" : "bg-slate-50/90 text-gray-900"
+                } relative overflow-hidden`}
         >
+            {/* Background Pattern & Dynamic Light Mesh */}
+            <BackgroundPattern isDarkMode={isDarkMode} />
+
             {/* Hero Section */}
             <motion.section
                 id="home"
                 style={{ y: heroY }}
                 className="min-h-[85vh] lg:min-h-screen flex items-center justify-center relative px-6 pt-12 lg:pt-10"
             >
-                <div className="absolute inset-0 overflow-hidden">
-                    <motion.div
-                        animate={{
-                            scale: [1, 1.1, 1],
-                            rotate: [0, 180, 360],
-                        }}
-                        transition={{
-                            duration: 20,
-                            repeat: Infinity,
-                            ease: "linear",
-                        }}
-                        className={`absolute top-20 right-20 w-64 h-64 rounded-full blur-3xl opacity-10 ${isDarkMode ? "bg-blue-500" : "bg-blue-400"
-                            }`}
-                    />
-                    <motion.div
-                        animate={{
-                            scale: [1.1, 1, 1.1],
-                            rotate: [360, 180, 0],
-                        }}
-                        transition={{
-                            duration: 25,
-                            repeat: Infinity,
-                            ease: "linear",
-                        }}
-                        className={`absolute bottom-20 left-20 w-48 h-48 rounded-full blur-3xl opacity-10 ${isDarkMode ? "bg-purple-500" : "bg-purple-400"
-                            }`}
-                    />
-                </div>
 
                 <div className="max-w-7xl mx-auto w-full z-10 mt-8 lg:mt-20">
                     {/* Mobile Layout-Centered */}

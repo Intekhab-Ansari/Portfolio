@@ -10,6 +10,7 @@ import{
 
 import { useTheme } from '../../context/ThemeContext';
 import { PROJECTS, LIVE_PROJECTS } from "../../utils/data";
+import BackgroundPattern from '../BackgroundPattern';
 import ProjectCards from '../ProjectCards';
 import { containerVariants,itemVariants } from '../../utils/helper';
 const ProjectsSection = () => {
@@ -22,22 +23,11 @@ const ProjectsSection = () => {
     id='work'
     ref={sectionRef}
     className={`py-24 px-6 ${
-      isDarkMode ? "bg-gray-950 text-white" : "bg-gray-50 text-gray-900"
-    } relative overflow-hidden`}
+      isDarkMode ? "bg-slate-950 text-white" : "bg-slate-50/90 text-gray-900"
+    } relative overflow-hidden transition-colors duration-500`}
   >
-    {/* Background Elements */}
-    <div className='absolute inset-0 overflow-hidden'>
-      <div
-        className={`absolute top-20 left-1/4 w-9 h-96 rounded-full blur-3xl opacity-5 ${
-          isDarkMode ? "bg-blue-500" : "bg-blue-400"
-        }`}
-      />
-      <div
-        className={`absolute bottom-20 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-5 ${
-          isDarkMode ? "bg-purple-500" : "bg-purple-400"
-        }`}
-      />
-    </div>
+    {/* Background Pattern & Dynamic Light Mesh */}
+    <BackgroundPattern isDarkMode={isDarkMode} />
 
     <div className='max-w-7xl mx-auto relative z-10'>
 

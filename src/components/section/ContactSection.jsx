@@ -11,6 +11,7 @@ import { CONTACT_INFO, SOCIAL_LINKS } from "../../utils/data";
 import { containerVariants, itemVariants } from "../../utils/helper";
 import TextInput from "../input/TextInput";
 import SuccessModel from "../SuccessModel";
+import BackgroundPattern from "../BackgroundPattern";
 
 const ContactSection = () => {
     const { isDarkMode } = useTheme();
@@ -96,23 +97,12 @@ const ContactSection = () => {
             ref={sectionRef}
             className={`py-24 px-6 ${
                 isDarkMode
-                    ? "bg-gray-900 text-white"
-                    : "bg-white text-gray-900"
-            } relative overflow-hidden`}
+                    ? "bg-slate-950 text-white"
+                    : "bg-slate-50/90 text-gray-900"
+            } relative overflow-hidden transition-colors duration-500`}
         >
-            {/* Background Animation */}
-            <motion.div style={{ y }} className="absolute inset-0">
-                <div
-                    className={`absolute top-20 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-5 ${
-                        isDarkMode ? "bg-blue-500" : "bg-blue-400"
-                    }`}
-                />
-                <div
-                    className={`absolute bottom-40 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-5 ${
-                        isDarkMode ? "bg-purple-500" : "bg-purple-400"
-                    }`}
-                />
-            </motion.div>
+            {/* Background Pattern & Dynamic Light Mesh */}
+            <BackgroundPattern isDarkMode={isDarkMode} />
 
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Header */}

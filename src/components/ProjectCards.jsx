@@ -26,11 +26,11 @@ const ProjectCards = ({project, index, isDarkMode}) => {
     className="group relative"
     >
         <div
-            className={`rounded-2xl overflow-hidden transition-all duration-500 ${
+            className={`rounded-2xl overflow-hidden transition-all duration-500 border ${
                 isDarkMode
-                    ? "bg-gray-900/50 border-gray-800 hover:border-gray-700 hover:shadow-2xl hover:shadow-blue-500/10"
-                    : "bg-white/80 border-gray-200 hover:border-gray-300 hover:shadow-2xl hover:shadow-blue-500/10"
-            } backdrop-blur-sm`}
+                    ? "bg-slate-900/60 border-slate-800 hover:border-blue-500/40 hover:shadow-2xl hover:shadow-blue-500/10"
+                    : "bg-white/90 border-slate-200 hover:border-blue-400/40 hover:shadow-2xl hover:shadow-blue-500/10"
+            } backdrop-blur-md`}
         >
             {/* Project Images */}
             <div className="relative overflow-hidden h-48 bg-gray-900/10">

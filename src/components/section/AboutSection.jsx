@@ -5,6 +5,7 @@ import {JOURNEY_STEPS, PASSIONS} from "../../utils/data";
 
 import SIGNATURE from "../../assets/images/signature.svg";
 import { containerVariants, itemVariants } from '../../utils/helper';
+import BackgroundPattern from '../BackgroundPattern';
 
 const AboutSection = () => {
     const {isDarkMode} = useTheme();
@@ -51,22 +52,11 @@ const AboutSection = () => {
       id='about'
       ref={sectionRef}
       className={`py-24 px-6 ${
-        isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"
-      } relative overflow-hidden`}
+        isDarkMode ? "bg-slate-950 text-white" : "bg-slate-50/90 text-gray-900"
+      } relative overflow-hidden transition-colors duration-500`}
     >
-      {/* Background Elements */}
-      <motion.div style={{y}} className='absolute inset-0 overflow-hidden'>
-        <div
-          className={`absolute top-40 right-1/3 w-80 h-80 rounded-full blur-3xl opacity-5 ${
-            isDarkMode ? "bg-blue-500" : "bg-blue-400"
-          }`}
-        />
-        <div
-          className={`absolute bottom-20 left-1/3 w-96 h-96 rounded-full blur-3xl opacity-5 ${
-            isDarkMode ? "bg-purple-500" : "bg-purple-400"
-          }`}
-        />
-      </motion.div>
+      {/* Background Pattern & Dynamic Light Mesh */}
+      <BackgroundPattern isDarkMode={isDarkMode} />
 
       <div className='max-w-6xl mx-auto relative z-10'>
 

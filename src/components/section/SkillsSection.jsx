@@ -1,10 +1,10 @@
 import { useRef } from 'react';
-import { delay, motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 
 import { useTheme } from '../../context/ThemeContext';
 import { SKILLS_CATEGORY, STATS, TECH_STACK } from "../../utils/data";
 import { containerVariants, itemVariants } from '../../utils/helper';
-import { div } from 'framer-motion/client';
+import BackgroundPattern from '../BackgroundPattern';
 
 const SkillsSection = () => {
 
@@ -35,20 +35,11 @@ const SkillsSection = () => {
   return <section
     ref={sectionRef}
     id='skills'
-    className={`py-12 md:py-24 px-6 ${isDarkMode ? "bg-gray-950 text-white" : "bg-gray-50 text-gray-900"
-      } relative overflow-hidden`}
+    className={`py-16 md:py-24 px-6 ${isDarkMode ? "bg-slate-950 text-white" : "bg-slate-50/90 text-gray-900"
+      } relative overflow-hidden transition-colors duration-500`}
   >
-    {/* Background Element */}
-    <motion.div style={{ y }} className='absolute inset-0 overflow-hidden'>
-      <div
-        className={`absolute top-40 right-1/4 w-72 h-72 rounded-full blur-3xl opacity-5 ${isDarkMode ? "bg-blue-500" : "bg-blue-400"
-          }`}
-      />
-      <div
-        className={`absolute bottom-40 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-5 ${isDarkMode ? "bg-purple-500" : "bg-purple-400"
-          }`}
-      />
-    </motion.div>
+    {/* Background Pattern & Animation */}
+    <BackgroundPattern isDarkMode={isDarkMode} />
 
     <div className='max-w-6xl mx-auto relative z-10'>
 
@@ -57,12 +48,12 @@ const SkillsSection = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className='text-center mb-10 md:mb-20'
+        className='text-center mb-10 md:mb-16'
       >
         <motion.div
           variants={itemVariants}
-          className={`text-sm uppercase tracking-widest ${isDarkMode ? "text-gray-500" : "text-gray-600"
-            }mb-4`}
+          className={`text-xs md:text-sm uppercase tracking-widest font-semibold ${isDarkMode ? "text-blue-400" : "text-blue-600"
+            } mb-3`}
         >
           Technical Expertise
         </motion.div>
@@ -72,49 +63,49 @@ const SkillsSection = () => {
           className='text-3xl md:text-5xl font-light mb-6'
         >
           Skills &
-          <span className='text-blue-500 font-medium'>Technologies</span>
+          <span className='text-blue-500 font-medium ml-2'>Technologies</span>
         </motion.h2>
 
         <motion.p
           variants={itemVariants}
-          className={`text-lg ${isDarkMode ? "text-gray-400" : "text-gray-600"
-            }max-w-2xl mx-auto font-light`}
+          className={`text-base md:text-lg ${isDarkMode ? "text-gray-400" : "text-gray-600"
+            } max-w-2xl mx-auto font-light`}
         >
           A comprehensive toolkit for building modern, scalable web
           applications from concept to deployment.
         </motion.p>
       </motion.div>
 
-      {/* CMS & Hosting - Full Width Horizontal Card */}
+      {/* CMS & Hosting - Full Width Top Highlight Card */}
       {SKILLS_CATEGORY.length > 0 && (
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
-          className="mb-3 md:mb-8"
+          className="mb-6 md:mb-8"
         >
           {(() => {
             const category = SKILLS_CATEGORY[0];
             return (
               <motion.div
                 variants={itemVariants}
-                className={`p-3 md:p-8 rounded-2xl border ${isDarkMode
-                  ? "bg-gray-900/50 border-gray-800 backdrop-blur-sm"
-                  : "bg-white/80 border-gray-200 backdrop-blur-sm"
-                  }`}
+                className={`p-5 md:p-8 rounded-2xl border ${isDarkMode
+                  ? "bg-slate-900/60 border-slate-800 backdrop-blur-md hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/5"
+                  : "bg-white/80 border-slate-200 backdrop-blur-md hover:border-blue-400/30 hover:shadow-xl hover:shadow-blue-500/5"
+                  } transition-all duration-300`}
               >
                 {/* Category Header */}
-                <div className="flex items-center mb-3 md:mb-6">
+                <div className="flex items-center mb-4 md:mb-6">
                   <div
-                    className={`p-1.5 md:p-3 rounded-xl ${isDarkMode ? "bg-gray-800" : "bg-gray-100"
-                      } mr-2 md:mr-4 flex items-center justify-center`}
+                    className={`p-2.5 md:p-3 rounded-xl ${isDarkMode ? "bg-slate-800 text-blue-400" : "bg-blue-50 text-blue-600"
+                      } mr-3 md:mr-4 flex items-center justify-center border ${isDarkMode ? "border-slate-700/50" : "border-blue-100"}`}
                   >
-                    <category.icon className="w-4 h-4 md:w-6 md:h-6 text-blue-500" />
+                    <category.icon className="w-5 h-5 md:w-6 md:h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xs md:text-xl font-medium mb-0.5 md:mb-1">{category.title}</h3>
+                    <h3 className="text-base md:text-xl font-medium mb-0.5 md:mb-1">{category.title}</h3>
                     <p
-                      className={`text-[9px] md:text-sm leading-tight ${isDarkMode ? "text-gray-400" : "text-gray-600"
+                      className={`text-xs md:text-sm leading-tight ${isDarkMode ? "text-gray-400" : "text-gray-600"
                         }`}
                     >
                       {category.description}
@@ -122,21 +113,21 @@ const SkillsSection = () => {
                   </div>
                 </div>
 
-                {/* Skills - Horizontal Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                {/* Skills - Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                   {category.skills.map((skill) => (
                     <div key={skill.name} className="group">
-                      <div className="flex justify-between items-center mb-1 md:mb-2">
+                      <div className="flex justify-between items-center mb-1.5">
                         <span className="text-xs md:text-sm font-medium">{skill.name}</span>
                         <span
-                          className={`text-[10px] md:text-xs ${isDarkMode ? "text-gray-500" : "text-gray-600"
+                          className={`text-[11px] md:text-xs font-semibold ${isDarkMode ? "text-blue-400" : "text-blue-600"
                             }`}
                         >
                           {skill.level}%
                         </span>
                       </div>
                       <div
-                        className={`h-1.5 md:h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-gray-800" : "bg-gray-200"
+                        className={`h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-slate-800" : "bg-slate-200/80"
                           }`}
                       >
                         <motion.div
@@ -156,34 +147,34 @@ const SkillsSection = () => {
         </motion.div>
       )}
 
-      {/* Middle Cards - 2 Column Grid (Frontend, Backend, Database) */}
+      {/* Vertical Grid Cards (Frontend, Backend, Database, DevOps & Tools) */}
       <motion.div
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-8 lg:gap-12 mb-3 md:mb-8"
+        className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8 md:mb-12"
       >
-        {SKILLS_CATEGORY.slice(1, -1).map((category) => (
+        {SKILLS_CATEGORY.slice(1).map((category) => (
           <motion.div
             key={category.title}
             variants={itemVariants}
-            className={`p-3 md:p-8 rounded-2xl border ${isDarkMode
-              ? "bg-gray-900/50 border-gray-800 backdrop-blur-sm"
-              : "bg-white/80 border-gray-200 backdrop-blur-sm"
-              }`}
+            className={`p-5 md:p-8 rounded-2xl border ${isDarkMode
+              ? "bg-slate-900/60 border-slate-800 backdrop-blur-md hover:border-blue-500/40 hover:shadow-xl hover:shadow-blue-500/10"
+              : "bg-white/80 border-slate-200 backdrop-blur-md hover:border-blue-400/40 hover:shadow-xl hover:shadow-blue-500/10"
+              } transition-all duration-300`}
           >
             {/* Category Header */}
-            <div className="flex items-center mb-3 md:mb-6">
+            <div className="flex items-center mb-4 md:mb-6">
               <div
-                className={`p-1.5 md:p-3 rounded-xl ${isDarkMode ? "bg-gray-800" : "bg-gray-100"
-                  } mr-2 md:mr-4 flex items-center justify-center`}
+                className={`p-2.5 md:p-3 rounded-xl ${isDarkMode ? "bg-slate-800 text-blue-400" : "bg-blue-50 text-blue-600"
+                  } mr-3 md:mr-4 flex items-center justify-center border ${isDarkMode ? "border-slate-700/50" : "border-blue-100"}`}
               >
-                <category.icon className="w-4 h-4 md:w-6 md:h-6 text-blue-500" />
+                <category.icon className="w-5 h-5 md:w-6 md:h-6" />
               </div>
               <div>
-                <h3 className="text-xs md:text-xl font-medium mb-0.5 md:mb-1">{category.title}</h3>
+                <h3 className="text-base md:text-xl font-medium mb-0.5 md:mb-1">{category.title}</h3>
                 <p
-                  className={`text-[9px] md:text-sm leading-tight ${isDarkMode ? "text-gray-400" : "text-gray-600"
+                  className={`text-xs md:text-sm leading-tight ${isDarkMode ? "text-gray-400" : "text-gray-600"
                     }`}
                 >
                   {category.description}
@@ -191,14 +182,14 @@ const SkillsSection = () => {
               </div>
             </div>
 
-            {/* Skills List */}
-            <div className="space-y-2 md:space-y-4">
+            {/* Vertical Skills List */}
+            <div className="space-y-3 md:space-y-4">
               {category.skills.map((skill) => (
                 <div key={skill.name} className="group">
-                  <div className="flex justify-between items-center mb-1 md:mb-2">
+                  <div className="flex justify-between items-center mb-1.5">
                     <span className="text-xs md:text-sm font-medium">{skill.name}</span>
                     <span
-                      className={`text-[10px] md:text-xs ${isDarkMode ? "text-gray-500" : "text-gray-600"
+                      className={`text-[11px] md:text-xs font-semibold ${isDarkMode ? "text-blue-400" : "text-blue-600"
                         }`}
                     >
                       {skill.level}%
@@ -206,7 +197,7 @@ const SkillsSection = () => {
                   </div>
 
                   <div
-                    className={`h-1.5 md:h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-gray-800" : "bg-gray-200"
+                    className={`h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-slate-800" : "bg-slate-200/80"
                       }`}
                   >
                     <motion.div
@@ -214,7 +205,7 @@ const SkillsSection = () => {
                       initial="hidden"
                       animate={isInView ? "visible" : "hidden"}
                       custom={skill.level}
-                      className={`h-full ${skill.color} rounded-full`}
+                      className={`h-full ${skill.color} rounded-full relative`}
                     >
                       <div className="absolute inset-0 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
                     </motion.div>
@@ -226,76 +217,6 @@ const SkillsSection = () => {
         ))}
       </motion.div>
 
-      {/* DevOps & Tools - Full Width Horizontal Card */}
-      {SKILLS_CATEGORY.length > 1 && (
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={containerVariants}
-        >
-          {(() => {
-            const category = SKILLS_CATEGORY[SKILLS_CATEGORY.length - 1];
-            return (
-              <motion.div
-                variants={itemVariants}
-                className={`p-3 md:p-8 rounded-2xl border ${isDarkMode
-                  ? "bg-gray-900/50 border-gray-800 backdrop-blur-sm"
-                  : "bg-white/80 border-gray-200 backdrop-blur-sm"
-                  }`}
-              >
-                {/* Category Header */}
-                <div className="flex items-center mb-3 md:mb-6">
-                  <div
-                    className={`p-1.5 md:p-3 rounded-xl ${isDarkMode ? "bg-gray-800" : "bg-gray-100"
-                      } mr-2 md:mr-4 flex items-center justify-center`}
-                  >
-                    <category.icon className="w-4 h-4 md:w-6 md:h-6 text-blue-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-xs md:text-xl font-medium mb-0.5 md:mb-1">{category.title}</h3>
-                    <p
-                      className={`text-[9px] md:text-sm leading-tight ${isDarkMode ? "text-gray-400" : "text-gray-600"
-                        }`}
-                    >
-                      {category.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Skills - Horizontal Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-                  {category.skills.map((skill) => (
-                    <div key={skill.name} className="group">
-                      <div className="flex justify-between items-center mb-1 md:mb-2">
-                        <span className="text-xs md:text-sm font-medium">{skill.name}</span>
-                        <span
-                          className={`text-[10px] md:text-xs ${isDarkMode ? "text-gray-500" : "text-gray-600"
-                            }`}
-                        >
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div
-                        className={`h-1.5 md:h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-gray-800" : "bg-gray-200"
-                          }`}
-                      >
-                        <motion.div
-                          variants={skillBarVariants}
-                          initial="hidden"
-                          animate={isInView ? "visible" : "hidden"}
-                          custom={skill.level}
-                          className={`h-full ${skill.color} rounded-full`}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })()}
-        </motion.div>
-      )}
-
       {/* Additional Skills */}
       <motion.div
         initial="hidden"
@@ -304,7 +225,10 @@ const SkillsSection = () => {
         className='mt-10 md:mt-16'
       >
         <motion.div variants={itemVariants} className='text-center mb-8'>
-          <h3 className='text-xl font-medium mb-4'>Also Working With</h3>
+          <h3 className='text-xl font-medium mb-2'>Also Working With</h3>
+          <p className={`text-xs md:text-sm ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
+            Tools, libraries, and utilities integrated into my workflow
+          </p>
         </motion.div>
 
         <motion.div
@@ -315,10 +239,10 @@ const SkillsSection = () => {
             <motion.span
               key={tech}
               whileHover={{y:-2, scale: 1.05}}
-              className={`px-2 py-2 text-xs md:text-sm md:px-4 md:py-2 rounded-lg md:rounded-full border transition-all duration-300 text-center flex items-center justify-center ${
+              className={`px-3 py-2 text-xs md:text-sm md:px-5 md:py-2.5 rounded-xl border transition-all duration-300 text-center flex items-center justify-center shadow-sm ${
                 isDarkMode
-                ? "bg-gray-900 border-gray-700 text-gray-300 hover:border-gray-600"
-                : "bg-white border-gray-300 text-gray-700 hover:border-gray-400"
+                ? "bg-slate-900/80 border-slate-800 text-gray-300 hover:border-blue-500/50 hover:text-blue-400 hover:shadow-blue-500/10"
+                : "bg-white/90 border-slate-200 text-gray-700 hover:border-blue-400/50 hover:text-blue-600 hover:shadow-blue-500/10"
               }`}
             >
               {tech}
@@ -332,7 +256,7 @@ const SkillsSection = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className='mt-10 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-8'
+        className='mt-12 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 p-6 rounded-2xl border backdrop-blur-md transition-colors duration-500 border-slate-200/50 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/40'
       >
         {STATS.map((stat, index)=>(
           <motion.div
@@ -340,11 +264,11 @@ const SkillsSection = () => {
             variants={itemVariants}
             className='text-center'
           >
-            <div className='text-2xl md:text-3xl font-light text-blue-500 mb-2'>
+            <div className='text-2xl md:text-4xl font-light text-blue-500 mb-1 font-mono font-semibold'>
                 {stat.number}
             </div>
             <div
-              className={`text-sm ${
+              className={`text-xs md:text-sm ${
                 isDarkMode ? "text-gray-400" : "text-gray-600"
               }`}
             >
@@ -357,4 +281,4 @@ const SkillsSection = () => {
   </section >
 };
 
-export default SkillsSection
+export default SkillsSection;
