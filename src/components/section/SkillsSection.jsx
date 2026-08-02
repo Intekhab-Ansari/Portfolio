@@ -35,7 +35,7 @@ const SkillsSection = () => {
   return <section
     ref={sectionRef}
     id='skills'
-    className={`py-24 px-6 ${isDarkMode ? "bg-gray-950 text-white" : "bg-gray-50 text-gray-900"
+    className={`py-12 md:py-24 px-6 ${isDarkMode ? "bg-gray-950 text-white" : "bg-gray-50 text-gray-900"
       } relative overflow-hidden`}
   >
     {/* Background Element */}
@@ -57,7 +57,7 @@ const SkillsSection = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className='text-center mb-20'
+        className='text-center mb-10 md:mb-20'
       >
         <motion.div
           variants={itemVariants}
@@ -85,34 +85,105 @@ const SkillsSection = () => {
         </motion.p>
       </motion.div>
 
-      {/* Skills Grid */}
+      {/* CMS & Hosting - Full Width Horizontal Card */}
+      {SKILLS_CATEGORY.length > 0 && (
+        <motion.div
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={containerVariants}
+          className="mb-3 md:mb-8"
+        >
+          {(() => {
+            const category = SKILLS_CATEGORY[0];
+            return (
+              <motion.div
+                variants={itemVariants}
+                className={`p-3 md:p-8 rounded-2xl border ${isDarkMode
+                  ? "bg-gray-900/50 border-gray-800 backdrop-blur-sm"
+                  : "bg-white/80 border-gray-200 backdrop-blur-sm"
+                  }`}
+              >
+                {/* Category Header */}
+                <div className="flex items-center mb-3 md:mb-6">
+                  <div
+                    className={`p-1.5 md:p-3 rounded-xl ${isDarkMode ? "bg-gray-800" : "bg-gray-100"
+                      } mr-2 md:mr-4 flex items-center justify-center`}
+                  >
+                    <category.icon className="w-4 h-4 md:w-6 md:h-6 text-blue-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs md:text-xl font-medium mb-0.5 md:mb-1">{category.title}</h3>
+                    <p
+                      className={`text-[9px] md:text-sm leading-tight ${isDarkMode ? "text-gray-400" : "text-gray-600"
+                        }`}
+                    >
+                      {category.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Skills - Horizontal Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                  {category.skills.map((skill) => (
+                    <div key={skill.name} className="group">
+                      <div className="flex justify-between items-center mb-1 md:mb-2">
+                        <span className="text-xs md:text-sm font-medium">{skill.name}</span>
+                        <span
+                          className={`text-[10px] md:text-xs ${isDarkMode ? "text-gray-500" : "text-gray-600"
+                            }`}
+                        >
+                          {skill.level}%
+                        </span>
+                      </div>
+                      <div
+                        className={`h-1.5 md:h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-gray-800" : "bg-gray-200"
+                          }`}
+                      >
+                        <motion.div
+                          variants={skillBarVariants}
+                          initial="hidden"
+                          animate={isInView ? "visible" : "hidden"}
+                          custom={skill.level}
+                          className={`h-full ${skill.color} rounded-full`}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })()}
+        </motion.div>
+      )}
+
+      {/* Middle Cards - 2 Column Grid (Frontend, Backend, Database) */}
       <motion.div
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className='grid md:grid-cols-2 gap-8 lg:gap-12'
+        className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-8 lg:gap-12 mb-3 md:mb-8"
       >
-        {SKILLS_CATEGORY.map((category, categoryIndex) => (
+        {SKILLS_CATEGORY.slice(1, -1).map((category) => (
           <motion.div
             key={category.title}
             variants={itemVariants}
-            className={`p-8 rounded-2xl border ${isDarkMode
+            className={`p-3 md:p-8 rounded-2xl border ${isDarkMode
               ? "bg-gray-900/50 border-gray-800 backdrop-blur-sm"
               : "bg-white/80 border-gray-200 backdrop-blur-sm"
               }`}
           >
             {/* Category Header */}
-            <div className='flex items-center mb-6'>
+            <div className="flex items-center mb-3 md:mb-6">
               <div
-                className={`p-3 rounded-xl ${isDarkMode ? "bg-gray-800" : "bg-gray-100"
-                  }mr-4`}
+                className={`p-1.5 md:p-3 rounded-xl ${isDarkMode ? "bg-gray-800" : "bg-gray-100"
+                  } mr-2 md:mr-4 flex items-center justify-center`}
               >
-                <category.icon size={24} className='text-blue-100' />
+                <category.icon className="w-4 h-4 md:w-6 md:h-6 text-blue-500" />
               </div>
               <div>
-                <h3 className='text-xl font-medium mb-1'>{category.title}</h3>
+                <h3 className="text-xs md:text-xl font-medium mb-0.5 md:mb-1">{category.title}</h3>
                 <p
-                  className={`text-sm ${isDarkMode ? "text-gray-400" : "text-gray-600"
+                  className={`text-[9px] md:text-sm leading-tight ${isDarkMode ? "text-gray-400" : "text-gray-600"
                     }`}
                 >
                   {category.description}
@@ -121,13 +192,13 @@ const SkillsSection = () => {
             </div>
 
             {/* Skills List */}
-            <div className='space-y-4'>
-              {category.skills.map((skill, skillIndex) => (
+            <div className="space-y-2 md:space-y-4">
+              {category.skills.map((skill) => (
                 <div key={skill.name} className="group">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className='text-sm font-medium'>{skill.name}</span>
+                  <div className="flex justify-between items-center mb-1 md:mb-2">
+                    <span className="text-xs md:text-sm font-medium">{skill.name}</span>
                     <span
-                      className={`text-xs ${isDarkMode ? "text-gray-500" : "text-gray-600"
+                      className={`text-[10px] md:text-xs ${isDarkMode ? "text-gray-500" : "text-gray-600"
                         }`}
                     >
                       {skill.level}%
@@ -135,7 +206,7 @@ const SkillsSection = () => {
                   </div>
 
                   <div
-                    className={`h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-gray-800" : "bg-gray-200"
+                    className={`h-1.5 md:h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-gray-800" : "bg-gray-200"
                       }`}
                   >
                     <motion.div
@@ -145,23 +216,92 @@ const SkillsSection = () => {
                       custom={skill.level}
                       className={`h-full ${skill.color} rounded-full`}
                     >
-                      <div className='absolute inset-0 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300'/>
+                      <div className="absolute inset-0 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
                     </motion.div>
                   </div>
                 </div>
               ))}
-
             </div>
           </motion.div>
         ))}
-      </motion.div >
+      </motion.div>
+
+      {/* DevOps & Tools - Full Width Horizontal Card */}
+      {SKILLS_CATEGORY.length > 1 && (
+        <motion.div
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
+          {(() => {
+            const category = SKILLS_CATEGORY[SKILLS_CATEGORY.length - 1];
+            return (
+              <motion.div
+                variants={itemVariants}
+                className={`p-3 md:p-8 rounded-2xl border ${isDarkMode
+                  ? "bg-gray-900/50 border-gray-800 backdrop-blur-sm"
+                  : "bg-white/80 border-gray-200 backdrop-blur-sm"
+                  }`}
+              >
+                {/* Category Header */}
+                <div className="flex items-center mb-3 md:mb-6">
+                  <div
+                    className={`p-1.5 md:p-3 rounded-xl ${isDarkMode ? "bg-gray-800" : "bg-gray-100"
+                      } mr-2 md:mr-4 flex items-center justify-center`}
+                  >
+                    <category.icon className="w-4 h-4 md:w-6 md:h-6 text-blue-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs md:text-xl font-medium mb-0.5 md:mb-1">{category.title}</h3>
+                    <p
+                      className={`text-[9px] md:text-sm leading-tight ${isDarkMode ? "text-gray-400" : "text-gray-600"
+                        }`}
+                    >
+                      {category.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Skills - Horizontal Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                  {category.skills.map((skill) => (
+                    <div key={skill.name} className="group">
+                      <div className="flex justify-between items-center mb-1 md:mb-2">
+                        <span className="text-xs md:text-sm font-medium">{skill.name}</span>
+                        <span
+                          className={`text-[10px] md:text-xs ${isDarkMode ? "text-gray-500" : "text-gray-600"
+                            }`}
+                        >
+                          {skill.level}%
+                        </span>
+                      </div>
+                      <div
+                        className={`h-1.5 md:h-2 rounded-full overflow-hidden ${isDarkMode ? "bg-gray-800" : "bg-gray-200"
+                          }`}
+                      >
+                        <motion.div
+                          variants={skillBarVariants}
+                          initial="hidden"
+                          animate={isInView ? "visible" : "hidden"}
+                          custom={skill.level}
+                          className={`h-full ${skill.color} rounded-full`}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })()}
+        </motion.div>
+      )}
 
       {/* Additional Skills */}
       <motion.div
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className='mt-16'
+        className='mt-10 md:mt-16'
       >
         <motion.div variants={itemVariants} className='text-center mb-8'>
           <h3 className='text-xl font-medium mb-4'>Also Working With</h3>
@@ -169,13 +309,13 @@ const SkillsSection = () => {
 
         <motion.div
           variants={itemVariants}
-          className='flex flex-wrap justify-center gap-3'
+          className='grid grid-cols-3 gap-2 md:flex md:flex-wrap md:justify-center md:gap-3'
         >
           {TECH_STACK.map((tech, index) =>(
             <motion.span
               key={tech}
               whileHover={{y:-2, scale: 1.05}}
-              className={`px-4 py-2 text-sm rounded-full border transition-all duration-300 ${
+              className={`px-2 py-2 text-xs md:text-sm md:px-4 md:py-2 rounded-lg md:rounded-full border transition-all duration-300 text-center flex items-center justify-center ${
                 isDarkMode
                 ? "bg-gray-900 border-gray-700 text-gray-300 hover:border-gray-600"
                 : "bg-white border-gray-300 text-gray-700 hover:border-gray-400"
@@ -192,7 +332,7 @@ const SkillsSection = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className='mt-20 grid grid-cols-2 md:grid-cols-4 gap-8'
+        className='mt-10 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-8'
       >
         {STATS.map((stat, index)=>(
           <motion.div

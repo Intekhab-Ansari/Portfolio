@@ -74,7 +74,7 @@ const HeroSection = () => {
             <motion.section
                 id="home"
                 style={{ y: heroY }}
-                className="min-h-screen flex items-center justify-center relative px-6 pt-10"
+                className="min-h-[85vh] lg:min-h-screen flex items-center justify-center relative px-6 pt-12 lg:pt-10"
             >
                 <div className="absolute inset-0 overflow-hidden">
                     <motion.div
@@ -105,7 +105,7 @@ const HeroSection = () => {
                     />
                 </div>
 
-                <div className="max-w-7xl mx-auto w-full z-10 mt-20">
+                <div className="max-w-7xl mx-auto w-full z-10 mt-8 lg:mt-20">
                     {/* Mobile Layout-Centered */}
                     <div className="block lg:hidden">
                         <motion.div
@@ -115,7 +115,7 @@ const HeroSection = () => {
                             className="text-center"
                         >
                             {/* Profile Image-Mobile */}
-                            <motion.div variants={imageVariants} className="mb-8 relative z-10">
+                            <motion.div variants={imageVariants} className="mb-4 relative z-10">
                                 <div className="w-32 h-32 mx-auto relative">
                                     <motion.div
                                         whileHover={{ scale: 1.05 }}
@@ -144,15 +144,15 @@ const HeroSection = () => {
                             {/* Content-Mobile */}
                             <motion.div
                                 variants={textVariants}
-                                className={`text-sm uppercase tracking-widest ${isDarkMode ? "text-gray-500" : "text-gray-600"
-                                    } mb-4`}
+                                className={`text-xs uppercase tracking-widest ${isDarkMode ? "text-gray-500" : "text-gray-600"
+                                    } mb-2`}
                             >
                                 Full Stack Developer
                             </motion.div>
 
                             <motion.h1
                                 variants={itemVariants}
-                                className="text-3xl md:text-5xl font-light mb-6 leading-tight"
+                                className="text-3xl md:text-5xl font-light mb-3 leading-tight"
                             >
                                 <span
                                     className={`${isDarkMode ? "text-white" : "text-gray-900"}`}
@@ -171,7 +171,7 @@ const HeroSection = () => {
                             <motion.p
                                 variants={itemVariants}
                                 className={`text-base md:text-lg ${isDarkMode ? "text-gray-400" : "text-gray-600"
-                                    } mb-8 max-w-xl mx-auto font-light leading-relaxed`}
+                                    } mb-4 max-w-xl mx-auto font-light leading-relaxed`}
                             >
                                 I craft beautiful, functional web applications with modern
                                 technologies and thoughtful user experiences.
@@ -180,13 +180,13 @@ const HeroSection = () => {
                             {/* CTA Button - Mobile */}
                             <motion.div
                                 variants={itemVariants}
-                                className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
+                                className="flex flex-row gap-3 justify-center items-center mb-4"
                             >
                                 <motion.button
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("work")}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300"
                                 >
                                     View Work
                                 </motion.button>
@@ -197,7 +197,7 @@ const HeroSection = () => {
                                     className={`border ${isDarkMode
                                             ? "border-gray-700 hover:border-gray-600 text-gray-300"
                                             : "border-gray-300 hover:border-gray-400 text-gray-700"
-                                        } px-8 py-3 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300`}
+                                        } px-6 py-3 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300`}
                                 >
                                     Get in Touch
                                 </motion.button>
@@ -206,7 +206,7 @@ const HeroSection = () => {
                             {/* Social Links - Mobile */}
                             <motion.div
                                 variants={itemVariants}
-                                className="flex justify-center space-x-6 mb-8"
+                                className="flex justify-center space-x-6 mb-4"
                             >
                                 {[
                                     { icon: FiGithub, href: "https://github.com/Intekhab-Ansari" },
@@ -230,7 +230,7 @@ const HeroSection = () => {
                             {/* Tech Stack - Mobile */}
                             <motion.div
                                 variants={itemVariants}
-                                className="flex justify-center items-center space-x-6 test-xs uppercase tracking-widest flex-wrap"
+                                className="flex justify-center items-center space-x-3 text-xs uppercase tracking-widest"
                             >
                                 <span
                                     className={isDarkMode ? "text-gray-600" : "text-gray-500"}

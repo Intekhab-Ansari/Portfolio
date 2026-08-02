@@ -39,6 +39,17 @@ import Live_mobile_3 from "../assets/images/live-theopaljewels-mobile.png";
 import Live_mobile_4 from "../assets/images/live-suyogsaanidhya-mobile.png";
 export const SKILLS_CATEGORY = [
     {
+        title:"CMS & Hosting",
+        icon:Globe,
+        description:"Building, managing, and deploying WordPress websites",
+        skills:[
+            {name:"WordPress",level:100,color:"bg-blue-500"},
+            {name:"GoDaddy",level:70,color:"bg-green-600"},
+            {name:"cPanel",level:80,color:"bg-orange-500"},
+            {name:"Domain & DNS Management",level:80,color:"bg-teal-500"},
+        ],
+    },
+    {
         title:"Frontend",
         icon:Code2,
         description: "Crafting beautiful, responsive user interfaces",
@@ -82,17 +93,6 @@ export const SKILLS_CATEGORY = [
             {name:"GitHub",level:85,color:"bg-gray-700"},
             {name:"Postman",level:90,color:"bg-orange-500"},
             {name:"Vite",level:85,color:"bg-purple-600"},
-        ],
-    },
-    {
-        title:"CMS & Hosting",
-        icon:Globe,
-        description:"Building, managing, and deploying WordPress websites",
-        skills:[
-            {name:"WordPress",level:100,color:"bg-blue-500"},
-            {name:"GoDaddy",level:70,color:"bg-green-600"},
-            {name:"cPanel",level:80,color:"bg-orange-500"},
-            {name:"Domain & DNS Management",level:80,color:"bg-teal-500"},
         ],
     },
 ];
