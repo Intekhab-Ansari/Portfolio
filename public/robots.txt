@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://intekhab-ansari.vercel.app/sitemap.xml
+Sitemap: https://intekhabansari.netlify.app/sitemap.xml

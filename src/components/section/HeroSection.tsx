@@ -112,40 +112,37 @@ const HeroSection: React.FC = () => {
                                 </div>
                             </motion.div>
 
-                            {/* Content-Mobile */}
+                            {/* Availability Badge - Mobile */}
                             <motion.div
                                 variants={textVariants}
-                                className={`text-xs uppercase tracking-widest ${isDarkMode ? "text-gray-400" : "text-gray-600"
-                                    } mb-2`}
+                                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium mb-3 border bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
                             >
-                                Full Stack Developer
+                                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                                Available for Freelance Projects
                             </motion.div>
 
                             <motion.h1
                                 variants={itemVariants}
                                 className="text-3xl md:text-5xl font-light mb-3 leading-tight"
                             >
-                                <span
-                                    className={`${isDarkMode ? "text-white" : "text-gray-900"}`}
-                                >
-                                    Building digital
+                                <span className={`${isDarkMode ? "text-white" : "text-gray-900"}`}>
+                                    Full Stack
                                 </span>
                                 <span className="text-blue-500 font-medium ml-2">
-                                    experiences
+                                    Web Developer
                                 </span>
                                 <br />
-                                <span className={isDarkMode ? "text-white" : "text-gray-900"}>
-                                    that matter
+                                <span className={isDarkMode ? "text-white text-2xl md:text-3xl font-light" : "text-gray-900 text-2xl md:text-3xl font-light"}>
+                                    & Software Engineer
                                 </span>
                             </motion.h1>
 
                             <motion.p
                                 variants={itemVariants}
-                                className={`text-base md:text-lg ${isDarkMode ? "text-gray-400" : "text-gray-600"
-                                    } mb-4 max-w-xl mx-auto font-light leading-relaxed`}
+                                className={`text-sm md:text-base ${isDarkMode ? "text-gray-300" : "text-gray-600"
+                                    } mb-5 max-w-xl mx-auto font-light leading-relaxed`}
                             >
-                                I craft beautiful, functional web applications with modern
-                                technologies and thoughtful user experiences.
+                                I craft fast, responsive React web applications, custom WordPress e-commerce storefronts, and full-stack solutions tailored to grow your business.
                             </motion.p>
 
                             {/* CTA Button - Mobile */}
@@ -156,21 +153,21 @@ const HeroSection: React.FC = () => {
                                 <motion.button
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
-                                    onClick={() => scrollToSection("work")}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300 shadow-md"
+                                    onClick={() => scrollToSection("contact")}
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold transition-all duration-300 shadow-lg"
                                 >
-                                    View Work
+                                    Hire Me / Free Quote
                                 </motion.button>
                                 <motion.button
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
-                                    onClick={() => scrollToSection("contact")}
+                                    onClick={() => scrollToSection("work")}
                                     className={`border ${isDarkMode
                                             ? "border-slate-700 hover:border-slate-600 text-gray-300"
                                             : "border-slate-300 hover:border-slate-400 text-gray-700"
                                         } px-6 py-3 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300`}
                                 >
-                                    Get in Touch
+                                    View Work
                                 </motion.button>
                             </motion.div>
 
@@ -226,57 +223,58 @@ const HeroSection: React.FC = () => {
                             variants={containerVariants}
                             className="text-left"
                         >
+                            {/* Availability Badge - Desktop */}
                             <motion.div
                                 variants={textVariants}
-                                className={`text-sm uppercase tracking-widest ${isDarkMode ? "text-gray-400" : "text-gray-600"
-                                    } mb-6`}
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-6 border bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
                             >
-                                Full Stack Developer
+                                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                                Available for Freelance & Contract Projects
                             </motion.div>
 
                             <motion.h1
                                 variants={itemVariants}
-                                className="text-5xl xl:text-7xl font-light mb-8 leading-tight"
+                                className="text-4xl xl:text-6xl font-light mb-6 leading-tight"
                             >
                                 <span className={`${isDarkMode ? "text-white" : "text-gray-900"}`}>
-                                    Building digital
+                                    Full Stack
+                                </span>
+                                <span className="text-blue-500 font-medium ml-3">
+                                    Web Developer
                                 </span>
                                 <br />
-                                <span className="text-blue-500 font-medium">experiences</span>
-                                <br />
-                                <span className={isDarkMode ? "text-white" : "text-gray-900"}>
-                                    that matter
+                                <span className={isDarkMode ? "text-white text-3xl xl:text-4xl font-light" : "text-gray-900 text-3xl xl:text-4xl font-light"}>
+                                    & Software Engineer
                                 </span>
                             </motion.h1>
 
                             <motion.p
                                 variants={itemVariants}
-                                className={`text-xl ${isDarkMode ? "text-gray-400" : "text-gray-600"} mb-12 font-light leading-relaxed max-w-lg`}
+                                className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-600"} mb-10 font-light leading-relaxed max-w-lg`}
                             >
-                                I craft beautiful, functional web applications with modern
-                                technology and thoughtful user experiences.
+                                I build fast, responsive React web applications, custom WordPress e-commerce websites, and robust full-stack solutions to grow your business.
                             </motion.p>
 
                             {/* CTA Button - Desktop */}
-                            <motion.div variants={itemVariants} className="flex gap-6 mb-8">
-                                <motion.button
-                                    whileHover={{ y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    onClick={() => scrollToSection("work")}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300 shadow-lg"
-                                >
-                                    View Work
-                                </motion.button>
+                            <motion.div variants={itemVariants} className="flex gap-4 mb-8">
                                 <motion.button
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("contact")}
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full text-sm uppercase tracking-wider font-semibold transition-all duration-300 shadow-xl cursor-pointer"
+                                >
+                                    Hire Me / Free Quote
+                                </motion.button>
+                                <motion.button
+                                    whileHover={{ y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={() => scrollToSection("work")}
                                     className={`border ${isDarkMode
                                             ? "border-slate-700 hover:border-slate-600 text-gray-300"
                                             : "border-slate-300 hover:border-slate-400 text-gray-700"
-                                        } px-8 py-4 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300`}
+                                        } px-8 py-4 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300 cursor-pointer`}
                                 >
-                                    Get in Touch
+                                    View Portfolio
                                 </motion.button>
                             </motion.div>
 
