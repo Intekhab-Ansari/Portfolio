@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import {
     motion,
     useInView,
@@ -12,13 +12,12 @@ import {
     Code2,
 } from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
-
 import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
 import { containerVariants, itemVariants } from "../../utils/helper";
 
-const Footer = () => {
+const Footer: React.FC = () => {
     const { isDarkMode } = useTheme();
-    const footerRef = useRef(null);
+    const footerRef = useRef<HTMLElement | null>(null);
 
     const isInView = useInView(footerRef, {
         once: true,
@@ -28,7 +27,6 @@ const Footer = () => {
     const { scrollYProgress } = useScroll();
     const scrollY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
-    //  Mailto Configuration
     const email = "ansariintekhab47@gmail.com";
     const subject = "Contact from Portfolio";
     const body =
@@ -47,7 +45,7 @@ const Footer = () => {
         {
             name: "LinkedIn",
             icon: FiLinkedin,
-            url: "https://www.linkedin.com/in/intekhab-ansari-5a6934281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            url: "https://www.linkedin.com/in/intekhab-ansari-5a6934281",
             color: "hover:text-blue-400",
         },
         {
@@ -68,12 +66,11 @@ const Footer = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    
-    const AnimatedGradientLine = () => {
+    const AnimatedGradientLine: React.FC = () => {
         return (
-            <div className="absolute top-0 left-0 w-full h-px overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-px overflow-hidden pointer-events-none">
                 <motion.div
-                    className={`h-px bg-linear-to-r ${isDarkMode
+                    className={`h-px bg-gradient-to-r ${isDarkMode
                         ? "from-transparent via-blue-500 to-transparent"
                         : "from-transparent via-blue-600 to-transparent"
                         }`}
@@ -87,7 +84,7 @@ const Footer = () => {
                     }}
                 />
                 <motion.div
-                    className={`absolute top-0 h-px w-32 bg-linear-to-r ${isDarkMode
+                    className={`absolute top-0 h-px w-32 bg-gradient-to-r ${isDarkMode
                         ? "from-blue-400 via-purple-500 to-blue-400"
                         : "from-blue-500 via-purple-600 to-blue-500"
                         } blur-sm`}
@@ -108,9 +105,9 @@ const Footer = () => {
     return (
         <footer
             ref={footerRef}
-            className={`relative overflow-hidden ${isDarkMode
-                ? "bg-gray-900 text-white"
-                : "bg-white text-gray-900"
+            className={`relative overflow-hidden transition-colors duration-500 ${isDarkMode
+                ? "bg-slate-950 text-white"
+                : "bg-slate-50/90 text-gray-900"
                 }`}
         >
             {/* Gradient Line */}
@@ -122,13 +119,13 @@ const Footer = () => {
                 className="absolute inset-0 pointer-events-none"
             >
                 <div
-                    className={`absolute bottom-10 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-3 ${isDarkMode
+                    className={`absolute bottom-10 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-5 ${isDarkMode
                         ? "bg-blue-500"
                         : "bg-blue-400"
                         }`}
                 />
                 <div
-                    className={`absolute top-10 right-1/3 w-48 h-48 rounded-full blur-3xl opacity-3 ${isDarkMode
+                    className={`absolute top-10 right-1/3 w-48 h-48 rounded-full blur-3xl opacity-5 ${isDarkMode
                         ? "bg-purple-500"
                         : "bg-purple-400"
                         }`}
@@ -184,23 +181,24 @@ const Footer = () => {
                         >
                             {socialLinks.map((social, index) => {
                                 const isEmail = social.name === "Email";
+                                const IconComponent = social.icon;
 
                                 return (
                                     <motion.a
                                         key={social.name}
                                         href={social.url}
+                                        aria-label={social.name}
                                         {...(!isEmail && {
                                             target: "_blank",
                                             rel: "noopener noreferrer",
                                         })}
                                         className={`p-3 rounded-full transition-all duration-300 ${isDarkMode
-                                            ? "bg-gray-800/50 hover:bg-gray-700/50"
-                                            : "bg-gray-100/50 hover:bg-gray-200/50"
+                                            ? "bg-slate-900/60 hover:bg-slate-800 text-gray-400 border border-slate-800"
+                                            : "bg-white/80 hover:bg-slate-100 text-gray-600 border border-slate-200"
                                             } ${social.color}`}
                                         whileHover={{
                                             scale: 1.1,
                                             y: -2,
-                                            rotate: [0, -5, 5, 0],
                                         }}
                                         whileTap={{ scale: 0.95 }}
                                         initial={{ opacity: 0, y: 20 }}
@@ -211,19 +209,18 @@ const Footer = () => {
                                             stiffness: 300,
                                         }}
                                     >
-                                        <social.icon size={20} />
+                                        <IconComponent size={20} />
                                     </motion.a>
                                 );
                             })}
                         </motion.div>
-
 
                         {/* Divider */}
                         <motion.div
                             variants={itemVariants}
                             className="flex items-center justify-center gap-4"
                         >
-                            <div className="h-px w-16 bg-gray-400" />
+                            <div className="h-px w-16 bg-slate-700/50" />
                             <motion.div
                                 animate={{ scale: [1, 1.2, 1] }}
                                 transition={{
@@ -234,7 +231,7 @@ const Footer = () => {
                             >
                                 <Heart size={16} fill="currentColor" />
                             </motion.div>
-                            <div className="h-px w-16 bg-gray-400" />
+                            <div className="h-px w-16 bg-slate-700/50" />
                         </motion.div>
 
                         {/* Copyright */}
@@ -243,11 +240,10 @@ const Footer = () => {
                             className="space-y-2"
                         >
                             <p className="text-sm text-gray-500">
-                                © {new Date().getFullYear()} Time To
-                                Program. All rights reserved.
+                                © {new Date().getFullYear()} Intekhab Ansari. All rights reserved.
                             </p>
                             <p className="text-xs text-gray-500">
-                                Built with React & Framer Motion
+                                Built with React, TypeScript & Framer Motion
                             </p>
                         </motion.div>
 
@@ -255,9 +251,9 @@ const Footer = () => {
                         <motion.div variants={itemVariants}>
                             <motion.button
                                 onClick={scrollToTop}
-                                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${isDarkMode
-                                    ? "bg-gray-800/50 hover:bg-gray-700/50 text-gray-400 hover:text-white"
-                                    : "bg-gray-100/50 hover:bg-gray-200/50 text-gray-600 hover:text-gray-900"
+                                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${isDarkMode
+                                    ? "bg-slate-900/60 hover:bg-slate-800 text-gray-300 border-slate-800"
+                                    : "bg-white/80 hover:bg-slate-100 text-gray-700 border-slate-200"
                                     }`}
                                 whileHover={{
                                     y: -2,

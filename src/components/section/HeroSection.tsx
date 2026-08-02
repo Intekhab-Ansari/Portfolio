@@ -1,10 +1,9 @@
+import React from "react";
 import {
-    delay,
     motion,
-    scale,
-    stagger,
     useScroll,
     useTransform,
+    Variants,
 } from "framer-motion";
 import {
     ArrowDown,
@@ -13,17 +12,16 @@ import {
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { useTheme } from "../../context/ThemeContext";
 
-import PROFILE_PIC from '../../assets/images/profile-img.jpg'
+import PROFILE_PIC from '../../assets/images/profile-img.jpg';
 import { containerVariants, itemVariants } from "../../utils/helper";
 import BackgroundPattern from "../BackgroundPattern";
 
-const HeroSection = () => {
+const HeroSection: React.FC = () => {
     const { isDarkMode } = useTheme();
 
     const { scrollY } = useScroll();
     const heroY = useTransform(scrollY, [0, 500], [0, -100]);
 
-    // EMAIL CONFIG (SAFE – NO UI CHANGE)
     const email = "ansariintekhab47@gmail.com";
     const subject = "Contact from Portfolio";
     const body =
@@ -33,34 +31,33 @@ const HeroSection = () => {
         subject
     )}&body=${encodeURIComponent(body)}`;
 
-
-    const scrollToSection = (sectionId) => {
+    const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
             element.scrollIntoView({ behavior: "smooth" });
         }
     };
 
-    const textVariants = {
+    const textVariants: Variants = {
         hidden: { y: 20, opacity: 0 },
         visible: {
             y: 0,
             opacity: 1,
             transition: {
                 duration: 0.6,
-                ease: "easeOut",
+                ease: "easeOut" as const,
             },
         },
     };
 
-    const imageVariants = {
+    const imageVariants: Variants = {
         hidden: { x: 50, opacity: 0 },
         visible: {
             x: 0,
             opacity: 1,
             transition: {
                 duration: 1,
-                ease: "easeOut",
+                ease: "easeOut" as const,
                 delay: 0.5,
             },
         },
@@ -78,9 +75,8 @@ const HeroSection = () => {
             <motion.section
                 id="home"
                 style={{ y: heroY }}
-                className="min-h-[85vh] lg:min-h-screen flex items-center justify-center relative px-6 pt-12 lg:pt-10"
+                className="min-h-[85vh] lg:min-h-screen flex items-center justify-center relative px-6 pt-12 lg:pt-10 z-10"
             >
-
                 <div className="max-w-7xl mx-auto w-full z-10 mt-8 lg:mt-20">
                     {/* Mobile Layout-Centered */}
                     <div className="block lg:hidden">
@@ -95,16 +91,15 @@ const HeroSection = () => {
                                 <div className="w-32 h-32 mx-auto relative">
                                     <motion.div
                                         whileHover={{ scale: 1.05 }}
-                                        className={`w-full h-32 rounded-2xl overflow-hidden border-4 ${isDarkMode ? "border-gray-800" : "border-gray-300"
+                                        className={`w-full h-32 rounded-2xl overflow-hidden border-4 ${isDarkMode ? "border-slate-800" : "border-slate-300"
                                             } shadow-2xl`}
                                     >
                                         <img
                                             src={PROFILE_PIC}
-                                            alt="Profile"
+                                            alt="Intekhab Ansari"
                                             className="w-full h-full object-cover"
                                         />
                                     </motion.div>
-                                    {/* Decorating ring */}
                                     <motion.div
                                         animate={{ rotate: 360 }}
                                         transition={{
@@ -120,7 +115,7 @@ const HeroSection = () => {
                             {/* Content-Mobile */}
                             <motion.div
                                 variants={textVariants}
-                                className={`text-xs uppercase tracking-widest ${isDarkMode ? "text-gray-500" : "text-gray-600"
+                                className={`text-xs uppercase tracking-widest ${isDarkMode ? "text-gray-400" : "text-gray-600"
                                     } mb-2`}
                             >
                                 Full Stack Developer
@@ -162,7 +157,7 @@ const HeroSection = () => {
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("work")}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300 shadow-md"
                                 >
                                     View Work
                                 </motion.button>
@@ -171,8 +166,8 @@ const HeroSection = () => {
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("contact")}
                                     className={`border ${isDarkMode
-                                            ? "border-gray-700 hover:border-gray-600 text-gray-300"
-                                            : "border-gray-300 hover:border-gray-400 text-gray-700"
+                                            ? "border-slate-700 hover:border-slate-600 text-gray-300"
+                                            : "border-slate-300 hover:border-slate-400 text-gray-700"
                                         } px-6 py-3 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300`}
                                 >
                                     Get in Touch
@@ -185,17 +180,20 @@ const HeroSection = () => {
                                 className="flex justify-center space-x-6 mb-4"
                             >
                                 {[
-                                    { icon: FiGithub, href: "https://github.com/Intekhab-Ansari" },
-                                    { icon: FiLinkedin, href: "https://www.linkedin.com/in/intekhab-ansari-5a6934281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-                                    { icon: Mail, href: mailLink },
+                                    { icon: FiGithub, href: "https://github.com/Intekhab-Ansari", label: "GitHub" },
+                                    { icon: FiLinkedin, href: "https://www.linkedin.com/in/intekhab-ansari-5a6934281", label: "LinkedIn" },
+                                    { icon: Mail, href: mailLink, label: "Email" },
                                 ].map((social, index) => (
                                     <motion.a
                                         key={index}
                                         href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={social.label}
                                         whileHover={{ y: -3, scale: 1.1 }}
                                         className={`p-3 rounded-full transition-colors ${isDarkMode
-                                                ? "text-gray-400 hover:text-white hover:bg-gray-800"
-                                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-200"
+                                                ? "text-gray-400 hover:text-white hover:bg-slate-800"
+                                                : "text-gray-600 hover:text-gray-900 hover:bg-slate-200"
                                             }`}
                                     >
                                         <social.icon size={20} />
@@ -208,41 +206,13 @@ const HeroSection = () => {
                                 variants={itemVariants}
                                 className="flex justify-center items-center space-x-3 text-xs uppercase tracking-widest"
                             >
-                                <span
-                                    className={isDarkMode ? "text-gray-600" : "text-gray-500"}
-                                >
-                                    React
-                                </span>
-                                <span
-                                    className={isDarkMode ? "text-gray-700" : "text-gray-400"}
-                                >
-                                    .
-                                </span>
-                                <span
-                                    className={isDarkMode ? "text-gray-600" : "text-gray-500"}
-                                >
-                                    Java
-                                </span>
-                                <span
-                                    className={isDarkMode ? "text-gray-700" : "text-gray-400"}
-                                >
-                                    .
-                                </span>
-                                <span
-                                    className={isDarkMode ? "text-gray-600" : "text-gray-500"}
-                                >
-                                    JavaScript
-                                </span>
-                                <span
-                                    className={isDarkMode ? "text-gray-700" : "text-gray-400"}
-                                >
-                                    .
-                                </span>
-                                <span
-                                    className={isDarkMode ? "text-gray-600" : "text-gray-500"}
-                                >
-                                    MySQL
-                                </span>
+                                <span className={isDarkMode ? "text-gray-400" : "text-gray-500"}>React</span>
+                                <span className={isDarkMode ? "text-gray-600" : "text-gray-400"}>.</span>
+                                <span className={isDarkMode ? "text-gray-400" : "text-gray-500"}>Java</span>
+                                <span className={isDarkMode ? "text-gray-600" : "text-gray-400"}>.</span>
+                                <span className={isDarkMode ? "text-gray-400" : "text-gray-500"}>JavaScript</span>
+                                <span className={isDarkMode ? "text-gray-600" : "text-gray-400"}>.</span>
+                                <span className={isDarkMode ? "text-gray-400" : "text-gray-500"}>MySQL</span>
                             </motion.div>
                         </motion.div>
                     </div>
@@ -258,7 +228,7 @@ const HeroSection = () => {
                         >
                             <motion.div
                                 variants={textVariants}
-                                className={`text-sm uppercase tracking-widest ${isDarkMode ? "text-gray-500" : "text-gray-600"
+                                className={`text-sm uppercase tracking-widest ${isDarkMode ? "text-gray-400" : "text-gray-600"
                                     } mb-6`}
                             >
                                 Full Stack Developer
@@ -268,9 +238,7 @@ const HeroSection = () => {
                                 variants={itemVariants}
                                 className="text-5xl xl:text-7xl font-light mb-8 leading-tight"
                             >
-                                <span
-                                    className={`${isDarkMode ? "text-white" : "text-gray-900"}`}
-                                >
+                                <span className={`${isDarkMode ? "text-white" : "text-gray-900"}`}>
                                     Building digital
                                 </span>
                                 <br />
@@ -295,7 +263,7 @@ const HeroSection = () => {
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("work")}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300 shadow-lg"
                                 >
                                     View Work
                                 </motion.button>
@@ -304,8 +272,8 @@ const HeroSection = () => {
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("contact")}
                                     className={`border ${isDarkMode
-                                            ? "border-gray-700 hover:border-gray-600 text-gray-300"
-                                            : "border-gray-300 hover:border-gray-400 text-gray-700"
+                                            ? "border-slate-700 hover:border-slate-600 text-gray-300"
+                                            : "border-slate-300 hover:border-slate-400 text-gray-700"
                                         } px-8 py-4 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300`}
                                 >
                                     Get in Touch
@@ -318,17 +286,20 @@ const HeroSection = () => {
                                 className="flex space-x-6 mb-12"
                             >
                                 {[
-                                    { icon: FiGithub, href: "https://github.com/Intekhab-Ansari" },
-                                    { icon: FiLinkedin, href: "https://www.linkedin.com/in/intekhab-ansari-5a6934281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
-                                    { icon: Mail, href: mailLink },
+                                    { icon: FiGithub, href: "https://github.com/Intekhab-Ansari", label: "GitHub" },
+                                    { icon: FiLinkedin, href: "https://www.linkedin.com/in/intekhab-ansari-5a6934281", label: "LinkedIn" },
+                                    { icon: Mail, href: mailLink, label: "Email" },
                                 ].map((social, index) => (
                                     <motion.a
                                         key={index}
                                         href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={social.label}
                                         whileHover={{ y: -3, scale: 1.1 }}
                                         className={`p-3 rounded-full transition-colors ${isDarkMode
-                                                ? "text-gray-400 hover:text-white hover:bg-gray-800"
-                                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-200"
+                                                ? "text-gray-400 hover:text-white hover:bg-slate-800"
+                                                : "text-gray-600 hover:text-gray-900 hover:bg-slate-200"
                                             }`}
                                     >
                                         <social.icon size={20} />
@@ -350,51 +321,23 @@ const HeroSection = () => {
                                     variants={itemVariants}
                                     className="flex items-center space-x-8 text-xs uppercase tracking-widest absolute -top-16 -left-28"
                                 >
-                                    <span
-                                        className={isDarkMode ? "text-gray-600" : "text-gray-500"}
-                                    >
-                                        React
-                                    </span>
-                                    <span
-                                        className={isDarkMode ? "text-gray-700" : "text-gray-400"}
-                                    >
-                                        .
-                                    </span>
-                                    <span
-                                        className={isDarkMode ? "text-gray-600" : "text-gray-500"}
-                                    >
-                                        Java
-                                    </span>
-                                    <span
-                                        className={isDarkMode ? "text-gray-700" : "text-gray-400"}
-                                    >
-                                        .
-                                    </span>
-                                    <span
-                                        className={isDarkMode ? "text-gray-600" : "text-gray-500"}
-                                    >
-                                        JavaScript
-                                    </span>
-                                    <span
-                                        className={isDarkMode ? "text-gray-700" : "text-gray-400"}
-                                    >
-                                        .
-                                    </span>
-                                    <span
-                                        className={isDarkMode ? "text-gray-600" : "text-gray-500"}
-                                    >
-                                        MySQL
-                                    </span>
+                                    <span className={isDarkMode ? "text-gray-400" : "text-gray-500"}>React</span>
+                                    <span className={isDarkMode ? "text-gray-600" : "text-gray-400"}>.</span>
+                                    <span className={isDarkMode ? "text-gray-400" : "text-gray-500"}>Java</span>
+                                    <span className={isDarkMode ? "text-gray-600" : "text-gray-400"}>.</span>
+                                    <span className={isDarkMode ? "text-gray-400" : "text-gray-500"}>JavaScript</span>
+                                    <span className={isDarkMode ? "text-gray-600" : "text-gray-400"}>.</span>
+                                    <span className={isDarkMode ? "text-gray-400" : "text-gray-500"}>MySQL</span>
                                 </motion.div>
 
                                 <motion.div
                                     whileHover={{ scale: 1.02 }}
-                                    className={`w-80 h-96 rounded-3xl overflow-hidden border-4 ${isDarkMode ? "border-gray-800" : "border-gray-300"
+                                    className={`w-80 h-96 rounded-3xl overflow-hidden border-4 ${isDarkMode ? "border-slate-800" : "border-slate-300"
                                         } shadow-2xl`}
                                 >
                                     <img
                                         src={PROFILE_PIC}
-                                        alt="Profile"
+                                        alt="Intekhab Ansari Profile"
                                         className="w-full h-full object-cover"
                                     />
                                 </motion.div>
@@ -407,7 +350,7 @@ const HeroSection = () => {
                                         repeat: Infinity,
                                         ease: "linear",
                                     }}
-                                    className="absolute -inset-4 rounded-3xl border border-blue-500/20"
+                                    className="absolute -inset-4 rounded-3xl border border-blue-500/20 pointer-events-none"
                                 />
                                 <motion.div
                                     animate={{ rotate: -360 }}
@@ -416,7 +359,7 @@ const HeroSection = () => {
                                         repeat: Infinity,
                                         ease: "linear",
                                     }}
-                                    className="absolute -inset-8 rounded-3xl border border-purple-500/10"
+                                    className="absolute -inset-8 rounded-3xl border border-purple-500/10 pointer-events-none"
                                 />
                             </div>
                         </motion.div>
@@ -431,12 +374,12 @@ const HeroSection = () => {
                 >
                     <ArrowDown
                         size={20}
-                        className={isDarkMode ? "text-gray-600" : "text-gray-400"}
+                        className={isDarkMode ? "text-gray-500" : "text-gray-400"}
                     />
                 </motion.div>
             </motion.section>
         </div>
-    )
-}
+    );
+};
 
-export default HeroSection
+export default HeroSection;

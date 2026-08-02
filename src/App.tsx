@@ -8,22 +8,19 @@ import AboutSection from './components/section/AboutSection'
 import ContactSection from './components/section/ContactSection'
 import Footer from './components/section/Footer'
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <>
-      <ThemeProvider>
-        <div>
-          <Navbar/>
-          <HeroSection/>
-          <ProjectsSection/>
-          <SkillsSection/>
-          <AboutSection/>
-          <ContactSection/>
-          <Footer/>
-        </div>
-      </ThemeProvider>
-    </>
-    
+    <ThemeProvider>
+      <div>
+        <Navbar />
+        <HeroSection />
+        <ProjectsSection />
+        <SkillsSection />
+        <AboutSection />
+        <ContactSection />
+        <Footer />
+      </div>
+    </ThemeProvider>
   )
 }
 

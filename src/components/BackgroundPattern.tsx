@@ -1,7 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const BackgroundPattern = ({ isDarkMode }) => {
+interface BackgroundPatternProps {
+  isDarkMode: boolean;
+}
+
+const BackgroundPattern: React.FC<BackgroundPatternProps> = ({ isDarkMode }) => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       {/* Background SVG Grid Pattern */}

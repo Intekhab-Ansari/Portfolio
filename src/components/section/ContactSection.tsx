@@ -1,19 +1,17 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef, FormEvent } from "react";
 import {
     motion,
     useInView,
-    useScroll,
-    useTransform,
 } from "framer-motion";
 import { Send } from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
-import { CONTACT_INFO, SOCIAL_LINKS } from "../../utils/data";
+import { CONTACT_INFO } from "../../utils/data";
 import { containerVariants, itemVariants } from "../../utils/helper";
 import TextInput from "../input/TextInput";
 import SuccessModel from "../SuccessModel";
 import BackgroundPattern from "../BackgroundPattern";
 
-const ContactSection = () => {
+const ContactSection: React.FC = () => {
     const { isDarkMode } = useTheme();
 
     const [formData, setFormData] = useState({
@@ -22,37 +20,45 @@ const ContactSection = () => {
         message: "",
     });
 
-    const [showSuccess, setShowSuccess] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showSuccess, setShowSuccess] = useState<boolean>(false);
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-    const sectionRef = useRef(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "end start"],
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-
-    const handleInputChange = (key, value) => {
+    const handleInputChange = (key: string, value: string) => {
         setFormData((prev) => ({
             ...prev,
             [key]: value,
         }));
     };
 
-    // ✅ SUBMIT WITH VALIDATION + MAIL API
-    const handleSubmit = async (e) => {
+    // Sanitize string to prevent basic XSS script injection
+    const sanitizeInput = (str: string): string => {
+        return str.replace(/<[^>]*>?/gm, "").trim();
+    };
+
+    const validateEmail = (email: string): boolean => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    };
+
+    // SUBMIT WITH SECURITY VALIDATION + MAIL API
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
+        const cleanName = sanitizeInput(formData.name);
+        const cleanEmail = sanitizeInput(formData.email);
+        const cleanMessage = sanitizeInput(formData.message);
+
         // Empty field validation
-        if (
-            !formData.name.trim() ||
-            !formData.email.trim() ||
-            !formData.message.trim()
-        ) {
-            alert("Please fill in all fields");
+        if (!cleanName || !cleanEmail || !cleanMessage) {
+            alert("Please fill in all fields with valid content.");
+            return;
+        }
+
+        if (!validateEmail(cleanEmail)) {
+            alert("Please enter a valid email address.");
             return;
         }
 
@@ -64,9 +70,9 @@ const ContactSection = () => {
                 "access_key",
                 "6cf28195-22fc-497e-81d4-e7a69eec5f85"
             );
-            formDataToSend.append("name", formData.name);
-            formDataToSend.append("email", formData.email);
-            formDataToSend.append("message", formData.message);
+            formDataToSend.append("name", cleanName);
+            formDataToSend.append("email", cleanEmail);
+            formDataToSend.append("message", cleanMessage);
 
             const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
@@ -78,14 +84,13 @@ const ContactSection = () => {
             if (data.success) {
                 setShowSuccess(true);
                 setFormData({ name: "", email: "", message: "" });
-
                 setTimeout(() => setShowSuccess(false), 3000);
             } else {
-                alert(data.message || "Something went wrong");
+                alert(data.message || "Something went wrong. Please try again.");
             }
         } catch (error) {
-            console.error(error);
-            alert("Failed to send message");
+            console.error("Submission error:", error);
+            alert("Failed to send message. Please check your internet connection.");
         } finally {
             setIsSubmitting(false);
         }
@@ -114,8 +119,8 @@ const ContactSection = () => {
                 >
                     <motion.p
                         variants={itemVariants}
-                        className={`text-sm uppercase tracking-widest mb-4 ${
-                            isDarkMode ? "text-gray-500" : "text-gray-600"
+                        className={`text-xs md:text-sm uppercase tracking-widest font-semibold mb-3 ${
+                            isDarkMode ? "text-blue-400" : "text-blue-600"
                         }`}
                     >
                         Let's Connect
@@ -133,7 +138,7 @@ const ContactSection = () => {
 
                     <motion.p
                         variants={itemVariants}
-                        className={`text-xl max-w-2xl mx-auto ${
+                        className={`text-lg md:text-xl max-w-2xl mx-auto ${
                             isDarkMode ? "text-gray-400" : "text-gray-600"
                         }`}
                     >
@@ -153,8 +158,8 @@ const ContactSection = () => {
                             variants={itemVariants}
                             className={`p-8 rounded-2xl border ${
                                 isDarkMode
-                                    ? "bg-gray-800/50 border-gray-700"
-                                    : "bg-gray-50/80 border-gray-200"
+                                    ? "bg-slate-900/60 border-slate-800 backdrop-blur-md"
+                                    : "bg-white/80 border-slate-200 backdrop-blur-md"
                             }`}
                         >
                             <h3 className="text-2xl font-medium mb-8">
@@ -204,7 +209,7 @@ const ContactSection = () => {
                                     }
                                     whileHover={{ y: -2, scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-400 text-white py-4 rounded-xl uppercase tracking-wider text-sm font-medium flex items-center justify-center gap-2"
+                                    className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-400 text-white py-4 rounded-xl uppercase tracking-wider text-sm font-medium flex items-center justify-center gap-2 transition-all shadow-lg cursor-pointer"
                                 >
                                     {isSubmitting ? (
                                         <>
@@ -241,35 +246,36 @@ const ContactSection = () => {
                             <h3 className="text-2xl font-medium mb-6">
                                 Contact Information
                             </h3>
-                            {CONTACT_INFO.map((info) => (
-                                <motion.a
-                                    key={info.label}
-                                    href={info.link}
-                                    {...(info.label === "Location" && {
-                                        target: "_blank",
-                                        rel: "noopener noreferrer"
-                                    })}
-                                    whileHover={{ x: 4 }}
-                                    className={`group flex items-center gap-4 p-4 rounded-xl transition-all duration-300 ${
-                                        isDarkMode
-                                            ? "bg-gray-800/40 hover:bg-gray-800/70 text-white"
-                                            : "bg-gray-50 hover:bg-gray-100 text-gray-900"
-                                    }`}
-                                >
-                                    <info.icon
-                                        size={20}
-                                        className="text-blue-500 shrink-0"
-                                    />
-                                    <div>
-                                        <p className="text-sm text-gray-500">
-                                            {info.label}
-                                        </p>
-                                        <p className="font-medium group-hover:text-blue-500 transition-colors">
-                                            {info.value}
-                                        </p>
-                                    </div>
-                                </motion.a>
-                            ))}
+                            {CONTACT_INFO.map((info) => {
+                                const IconComponent = info.icon;
+                                return (
+                                    <motion.a
+                                        key={info.label}
+                                        href={info.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ x: 4 }}
+                                        className={`group flex items-center gap-4 p-4 mb-4 rounded-xl border transition-all duration-300 ${
+                                            isDarkMode
+                                                ? "bg-slate-900/40 border-slate-800/60 hover:bg-slate-900/80 text-white"
+                                                : "bg-white/60 border-slate-200/60 hover:bg-white text-gray-900"
+                                        }`}
+                                    >
+                                        <IconComponent
+                                            size={20}
+                                            className="text-blue-500 shrink-0"
+                                        />
+                                        <div>
+                                            <p className="text-xs text-gray-400 uppercase tracking-wider">
+                                                {info.label}
+                                            </p>
+                                            <p className="font-medium group-hover:text-blue-500 transition-colors">
+                                                {info.value}
+                                            </p>
+                                        </div>
+                                    </motion.a>
+                                );
+                            })}
                         </motion.div>
                     </motion.div>
                 </div>
