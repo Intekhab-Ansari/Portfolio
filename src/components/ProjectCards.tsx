@@ -57,13 +57,14 @@ const ProjectCards: React.FC<ProjectCardsProps> = ({ project, index, isDarkMode 
 
                     {/* Mobile View Overlay */}
                     {project.mobileImage && (
-                        <div className="absolute right-4 bottom-3 w-[95px] h-[180px] sm:w-[110px] sm:h-[210px] rounded-2xl border-[3px] border-neutral-950 overflow-hidden shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-2 z-10 bg-neutral-950">
+                        <div className="absolute right-4 bottom-3 w-[95px] h-[180px] sm:w-[112px] sm:h-[215px] rounded-2xl border-[3px] border-neutral-950 overflow-hidden shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-2 z-10 bg-neutral-950">
                             {/* Simulated Phone Notch */}
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-2 bg-neutral-950 rounded-b-md z-20" />
                             <img
                                 src={getImageSrc(project.mobileImage)}
                                 alt={`${project.title} mobile view`}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover object-top"
+                                style={{ imageRendering: '-webkit-optimize-contrast' }}
                             />
                         </div>
                     )}
