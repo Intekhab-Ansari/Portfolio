@@ -105,9 +105,9 @@ const HeroSection: React.FC = () => {
             <motion.section
                 id="home"
                 style={{ y: heroY }}
-                className="min-h-[85vh] lg:min-h-screen flex items-center justify-center relative px-6 pt-12 lg:pt-10 z-10"
+                className="min-h-[85vh] lg:min-h-screen flex items-center justify-center relative px-6 pt-12 lg:pt-8 z-10"
             >
-                <div className="max-w-7xl mx-auto w-full z-10 mt-8 lg:mt-20">
+                <div className="max-w-7xl mx-auto w-full z-10 mt-8 lg:mt-12 xl:mt-16">
                     {/* Mobile Layout-Centered */}
                     <div className="block lg:hidden">
                         <motion.div
@@ -245,7 +245,7 @@ const HeroSection: React.FC = () => {
                     </div>
 
                     {/* Desktop Layout - split */}
-                    <div className="hidden lg:grid grid-cols-2 gap-16 items-center">
+                    <div className="hidden lg:grid grid-cols-2 gap-12 xl:gap-16 items-center">
                         {/* Left Column - Content */}
                         <motion.div
                             initial="hidden"
@@ -256,7 +256,7 @@ const HeroSection: React.FC = () => {
                             {/* Availability Badge - Desktop */}
                             <motion.div
                                 variants={textVariants}
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-6 border bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                                className="inline-flex items-center gap-2 px-3.5 py-1.5 xl:px-4 xl:py-2 rounded-full text-xs font-semibold mb-4 xl:mb-5 border bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
                             >
                                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                                 Available for Freelance & Contract Projects
@@ -264,7 +264,7 @@ const HeroSection: React.FC = () => {
 
                             <motion.h1
                                 variants={itemVariants}
-                                className="text-4xl xl:text-6xl font-light mb-6 leading-tight"
+                                className="text-4xl xl:text-5xl 2xl:text-6xl font-light mb-4 xl:mb-5 leading-tight"
                             >
                                 <span className={`${isDarkMode ? "text-white" : "text-gray-900"}`}>
                                     Full Stack
@@ -280,18 +280,18 @@ const HeroSection: React.FC = () => {
 
                             <motion.p
                                 variants={itemVariants}
-                                className={`text-lg ${isDarkMode ? "text-gray-300" : "text-gray-600"} mb-10 font-light leading-relaxed max-w-lg`}
+                                className={`text-base xl:text-lg ${isDarkMode ? "text-gray-300" : "text-gray-600"} mb-6 xl:mb-8 font-light leading-relaxed max-w-lg`}
                             >
                                 I build fast, responsive React web applications, custom WordPress e-commerce websites, and robust full-stack solutions to grow your business.
                             </motion.p>
 
                             {/* CTA Button - Desktop */}
-                            <motion.div variants={itemVariants} className="flex gap-4 mb-8">
+                            <motion.div variants={itemVariants} className="flex gap-4 mb-6 xl:mb-7">
                                 <motion.button
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("contact")}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full text-sm uppercase tracking-wider font-semibold transition-all duration-300 shadow-xl shadow-blue-500/25 cursor-pointer"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-7 py-3.5 xl:px-8 xl:py-4 rounded-full text-xs xl:text-sm uppercase tracking-wider font-semibold transition-all duration-300 shadow-xl shadow-blue-500/25 cursor-pointer"
                                 >
                                     Hire Me / Free Quote
                                 </motion.button>
@@ -299,21 +299,21 @@ const HeroSection: React.FC = () => {
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("work")}
-                                    className={`group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-md ${
+                                    className={`group inline-flex items-center justify-center gap-2 px-7 py-3.5 xl:px-8 xl:py-4 rounded-full text-xs xl:text-sm uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-md ${
                                         isDarkMode
                                             ? "bg-slate-900/90 hover:bg-slate-800 text-gray-100 border border-slate-700/80 hover:border-blue-500/60 hover:text-blue-400 hover:shadow-blue-500/10"
                                             : "bg-white/95 hover:bg-white text-gray-800 border border-slate-300/90 hover:border-blue-500/60 hover:text-blue-600 hover:shadow-blue-500/15"
                                     }`}
                                 >
                                     <span>View Portfolio</span>
-                                    <ArrowUpRight size={17} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                    <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                                 </motion.button>
                             </motion.div>
 
                             {/* Social Links - Desktop */}
                             <motion.div
                                 variants={itemVariants}
-                                className="flex items-center gap-4 mb-12"
+                                className="flex items-center gap-3.5 mb-8"
                             >
                                 {socialLinks.map((social, index) => (
                                     <motion.a
