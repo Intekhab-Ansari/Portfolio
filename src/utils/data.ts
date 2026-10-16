@@ -29,13 +29,15 @@ import Project_img_6 from "../assets/images/profile-img-6.png";
 
 import Live_img_1 from "../assets/images/live-tiffinwales.png";
 import Live_img_2 from "../assets/images/live-quantorra.png";
-import Live_img_3 from "../assets/images/live-theopaljewels.png";
+import Live_img_3 from "../assets/images/live-harekrsnaattires.png";
 import Live_img_4 from "../assets/images/live-suyogsaanidhya.png";
+import Live_img_5 from "../assets/images/live-salvagereef.png";
 
 import Live_mobile_1 from "../assets/images/live-tiffinwales-mobile.png";
 import Live_mobile_2 from "../assets/images/live-quantorra-mobile.png";
-import Live_mobile_3 from "../assets/images/live-theopaljewels-mobile.png";
+import Live_mobile_3 from "../assets/images/live-harekrsnaattires-mobile.png";
 import Live_mobile_4 from "../assets/images/live-suyogsaanidhya-mobile.png";
+import Live_mobile_5 from "../assets/images/live-salvagereef-mobile.png";
 
 import {
     SkillCategory,
@@ -126,7 +128,10 @@ export const TECH_STACK: string[] = [
     "HTML",
     "CSS",
     "React",
+    "Next.js",
     "Tailwind CSS",
+    "Laravel",
+    "PHP",
     "Java",
     "MySQL",
     "SpringBoot",
@@ -177,16 +182,15 @@ export const LIVE_PROJECTS: Project[] = [
     },
     {
         id: 3,
-        title: "The Opal Jewels",
-        description: "A premium luxury jewelry e-commerce storefront built on WordPress. Fully technical SEO optimized & ranked Page 1 on Google in India.",
+        title: "Hare Krsna Attires",
+        description: "A luxury devotional e-commerce platform built with a high-performance Next.js frontend and WordPress headless CMS backend.",
         image: Live_img_3,
         mobileImage: Live_mobile_3,
-        tags: ["WordPress", "SEO Page 1 India", "E-Commerce", "WooCommerce"],
-        liveUrl: "https://theopaljewels.com/",
+        tags: ["Next.js", "WordPress CMS", "Headless CMS", "Tailwind CSS", "WooCommerce"],
+        liveUrl: "https://harekrsnaattires.com/",
         githubUrl: "#",
         featured: true,
-        category: "WordPress Site",
-        seoBadge: "🏆 Page 1 Google Ranked in India",
+        category: "Headless CMS",
     },
     {
         id: 4,
@@ -196,6 +200,18 @@ export const LIVE_PROJECTS: Project[] = [
         mobileImage: Live_mobile_4,
         tags: ["React", "Vite", "PHP", "MySQL", "Tailwind CSS"],
         liveUrl: "https://suyogsaanidhya.com/",
+        githubUrl: "#",
+        featured: true,
+        category: "Full Stack",
+    },
+    {
+        id: 5,
+        title: "SalvageReef",
+        description: "B2B salvage auctions and classifieds marketplace platform built with a high-performance Next.js frontend and a robust Laravel REST API backend.",
+        image: Live_img_5,
+        mobileImage: Live_mobile_5,
+        tags: ["Next.js", "Laravel", "REST API", "Tailwind CSS", "MySQL", "B2B Marketplace"],
+        liveUrl: "https://salvagereef.com/",
         githubUrl: "#",
         featured: true,
         category: "Full Stack",

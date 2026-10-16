@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import { ExternalLink, Trophy } from "lucide-react";
@@ -23,6 +25,12 @@ const ProjectCards: React.FC<ProjectCardsProps> = ({ project, index, isDarkMode 
         },
     };
 
+    const getImageSrc = (img: any) => {
+        if (!img) return '';
+        if (typeof img === 'string') return img;
+        return img.src || img;
+    };
+
     return (
         <motion.div
             variants={cardVariants}
@@ -42,7 +50,7 @@ const ProjectCards: React.FC<ProjectCardsProps> = ({ project, index, isDarkMode 
                 {/* Project Images Container - Height increased to h-64 sm:h-72 lg:h-80 */}
                 <div className="relative overflow-hidden h-64 sm:h-72 lg:h-80 bg-slate-900/10">
                     <img
-                        src={project.image}
+                        src={getImageSrc(project.image)}
                         alt={project.title}
                         className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
@@ -53,7 +61,7 @@ const ProjectCards: React.FC<ProjectCardsProps> = ({ project, index, isDarkMode 
                             {/* Simulated Phone Notch */}
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-2 bg-neutral-950 rounded-b-md z-20" />
                             <img
-                                src={project.mobileImage}
+                                src={getImageSrc(project.mobileImage)}
                                 alt={`${project.title} mobile view`}
                                 className="w-full h-full object-cover"
                             />

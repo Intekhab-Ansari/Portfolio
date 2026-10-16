@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import {
     motion,
@@ -7,6 +9,7 @@ import {
 } from "framer-motion";
 import {
     ArrowDown,
+    ArrowUpRight,
     Mail
 } from "lucide-react";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
@@ -15,6 +18,12 @@ import { useTheme } from "../../context/ThemeContext";
 import PROFILE_PIC from '../../assets/images/profile-img.jpg';
 import { containerVariants, itemVariants } from "../../utils/helper";
 import BackgroundPattern from "../BackgroundPattern";
+
+const getImageSrc = (img: any) => {
+    if (!img) return '';
+    if (typeof img === 'string') return img;
+    return img.src || img;
+};
 
 const HeroSection: React.FC = () => {
     const { isDarkMode } = useTheme();
@@ -30,6 +39,27 @@ const HeroSection: React.FC = () => {
     const mailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(
         subject
     )}&body=${encodeURIComponent(body)}`;
+
+    const socialLinks = [
+        {
+            icon: FiGithub,
+            href: "https://github.com/Intekhab-Ansari",
+            label: "GitHub",
+            hoverClasses: "hover:text-gray-950 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-500 hover:shadow-slate-500/10",
+        },
+        {
+            icon: FiLinkedin,
+            href: "https://www.linkedin.com/in/intekhab-ansari-5a6934281",
+            label: "LinkedIn",
+            hoverClasses: "hover:text-[#0A66C2] hover:border-[#0A66C2]/60 hover:shadow-[#0A66C2]/15",
+        },
+        {
+            icon: Mail,
+            href: mailLink,
+            label: "Email",
+            hoverClasses: "hover:text-blue-500 hover:border-blue-500/60 hover:shadow-blue-500/15",
+        },
+    ];
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
@@ -95,7 +125,7 @@ const HeroSection: React.FC = () => {
                                             } shadow-2xl`}
                                     >
                                         <img
-                                            src={PROFILE_PIC}
+                                            src={getImageSrc(PROFILE_PIC)}
                                             alt="Intekhab Ansari"
                                             className="w-full h-full object-cover"
                                         />
@@ -154,7 +184,7 @@ const HeroSection: React.FC = () => {
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("contact")}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold transition-all duration-300 shadow-lg"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold transition-all duration-300 shadow-md shadow-blue-500/25 cursor-pointer"
                                 >
                                     Hire Me / Free Quote
                                 </motion.button>
@@ -162,38 +192,38 @@ const HeroSection: React.FC = () => {
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("work")}
-                                    className={`border ${isDarkMode
-                                            ? "border-slate-700 hover:border-slate-600 text-gray-300"
-                                            : "border-slate-300 hover:border-slate-400 text-gray-700"
-                                        } px-6 py-3 rounded-full text-xs uppercase tracking-wider font-medium transition-all duration-300`}
+                                    className={`group inline-flex items-center justify-center gap-1.5 px-6 py-3 rounded-full text-xs uppercase tracking-wider font-semibold transition-all duration-300 shadow-md backdrop-blur-md cursor-pointer ${
+                                        isDarkMode
+                                            ? "bg-slate-900/90 hover:bg-slate-800 text-gray-100 border border-slate-700/80 hover:border-blue-500/60 hover:text-blue-400 hover:shadow-blue-500/10"
+                                            : "bg-white/95 hover:bg-white text-gray-800 border border-slate-300/90 hover:border-blue-500/60 hover:text-blue-600 hover:shadow-blue-500/15"
+                                    }`}
                                 >
-                                    View Work
+                                    <span>View Portfolio</span>
+                                    <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                                 </motion.button>
                             </motion.div>
 
                             {/* Social Links - Mobile */}
                             <motion.div
                                 variants={itemVariants}
-                                className="flex justify-center space-x-6 mb-4"
+                                className="flex justify-center items-center gap-3.5 mb-5"
                             >
-                                {[
-                                    { icon: FiGithub, href: "https://github.com/Intekhab-Ansari", label: "GitHub" },
-                                    { icon: FiLinkedin, href: "https://www.linkedin.com/in/intekhab-ansari-5a6934281", label: "LinkedIn" },
-                                    { icon: Mail, href: mailLink, label: "Email" },
-                                ].map((social, index) => (
+                                {socialLinks.map((social, index) => (
                                     <motion.a
                                         key={index}
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={social.label}
-                                        whileHover={{ y: -3, scale: 1.1 }}
-                                        className={`p-3 rounded-full transition-colors ${isDarkMode
-                                                ? "text-gray-400 hover:text-white hover:bg-slate-800"
-                                                : "text-gray-600 hover:text-gray-900 hover:bg-slate-200"
-                                            }`}
+                                        whileHover={{ y: -3, scale: 1.08 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className={`group relative flex items-center justify-center w-11 h-11 rounded-2xl transition-all duration-300 backdrop-blur-md border shadow-sm hover:shadow-md cursor-pointer ${
+                                            isDarkMode
+                                                ? "bg-slate-900/80 border-slate-800 text-gray-300 hover:bg-slate-800/90"
+                                                : "bg-white/95 border-slate-200/90 text-gray-700 hover:bg-white"
+                                        } ${social.hoverClasses}`}
                                     >
-                                        <social.icon size={20} />
+                                        <social.icon size={19} className="transition-transform duration-300 group-hover:scale-110" />
                                     </motion.a>
                                 ))}
                             </motion.div>
@@ -261,7 +291,7 @@ const HeroSection: React.FC = () => {
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("contact")}
-                                    className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full text-sm uppercase tracking-wider font-semibold transition-all duration-300 shadow-xl cursor-pointer"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full text-sm uppercase tracking-wider font-semibold transition-all duration-300 shadow-xl shadow-blue-500/25 cursor-pointer"
                                 >
                                     Hire Me / Free Quote
                                 </motion.button>
@@ -269,38 +299,49 @@ const HeroSection: React.FC = () => {
                                     whileHover={{ y: -2 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => scrollToSection("work")}
-                                    className={`border ${isDarkMode
-                                            ? "border-slate-700 hover:border-slate-600 text-gray-300"
-                                            : "border-slate-300 hover:border-slate-400 text-gray-700"
-                                        } px-8 py-4 rounded-full text-sm uppercase tracking-wider font-medium transition-all duration-300 cursor-pointer`}
+                                    className={`group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm uppercase tracking-wider font-semibold transition-all duration-300 cursor-pointer shadow-lg hover:shadow-xl backdrop-blur-md ${
+                                        isDarkMode
+                                            ? "bg-slate-900/90 hover:bg-slate-800 text-gray-100 border border-slate-700/80 hover:border-blue-500/60 hover:text-blue-400 hover:shadow-blue-500/10"
+                                            : "bg-white/95 hover:bg-white text-gray-800 border border-slate-300/90 hover:border-blue-500/60 hover:text-blue-600 hover:shadow-blue-500/15"
+                                    }`}
                                 >
-                                    View Portfolio
+                                    <span>View Portfolio</span>
+                                    <ArrowUpRight size={17} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                                 </motion.button>
                             </motion.div>
 
                             {/* Social Links - Desktop */}
                             <motion.div
                                 variants={itemVariants}
-                                className="flex space-x-6 mb-12"
+                                className="flex items-center gap-4 mb-12"
                             >
-                                {[
-                                    { icon: FiGithub, href: "https://github.com/Intekhab-Ansari", label: "GitHub" },
-                                    { icon: FiLinkedin, href: "https://www.linkedin.com/in/intekhab-ansari-5a6934281", label: "LinkedIn" },
-                                    { icon: Mail, href: mailLink, label: "Email" },
-                                ].map((social, index) => (
+                                {socialLinks.map((social, index) => (
                                     <motion.a
                                         key={index}
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={social.label}
-                                        whileHover={{ y: -3, scale: 1.1 }}
-                                        className={`p-3 rounded-full transition-colors ${isDarkMode
-                                                ? "text-gray-400 hover:text-white hover:bg-slate-800"
-                                                : "text-gray-600 hover:text-gray-900 hover:bg-slate-200"
-                                            }`}
+                                        whileHover={{ y: -3, scale: 1.08 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className={`group relative flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300 backdrop-blur-md border shadow-sm hover:shadow-lg cursor-pointer ${
+                                            isDarkMode
+                                                ? "bg-slate-900/80 border-slate-800 text-gray-300 hover:bg-slate-800/90"
+                                                : "bg-white/95 border-slate-200/90 text-gray-700 hover:bg-white"
+                                        } ${social.hoverClasses}`}
                                     >
-                                        <social.icon size={20} />
+                                        <social.icon size={20} className="transition-transform duration-300 group-hover:scale-110" />
+
+                                        {/* Micro Tooltip */}
+                                        <span
+                                            className={`absolute -top-9 px-2.5 py-1 text-[11px] font-medium tracking-wide rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none transform translate-y-1 group-hover:translate-y-0 shadow-lg whitespace-nowrap z-30 ${
+                                                isDarkMode
+                                                    ? "bg-slate-800 text-gray-100 border border-slate-700/80 shadow-black/40"
+                                                    : "bg-gray-900 text-white border border-gray-800 shadow-slate-400/20"
+                                            }`}
+                                        >
+                                            {social.label}
+                                        </span>
                                     </motion.a>
                                 ))}
                             </motion.div>
@@ -334,7 +375,7 @@ const HeroSection: React.FC = () => {
                                         } shadow-2xl`}
                                 >
                                     <img
-                                        src={PROFILE_PIC}
+                                        src={getImageSrc(PROFILE_PIC)}
                                         alt="Intekhab Ansari Profile"
                                         className="w-full h-full object-cover"
                                     />

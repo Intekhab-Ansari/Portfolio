@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useTheme } from "../../context/ThemeContext";
@@ -6,6 +8,12 @@ import { JOURNEY_STEPS, PASSIONS } from "../../utils/data";
 import SIGNATURE from "../../assets/images/signature.svg";
 import { containerVariants, itemVariants } from '../../utils/helper';
 import BackgroundPattern from '../BackgroundPattern';
+
+const getImageSrc = (img: any) => {
+  if (!img) return '';
+  if (typeof img === 'string') return img;
+  return img.src || img;
+};
 
 const AboutSection: React.FC = () => {
     const { isDarkMode } = useTheme();
@@ -173,7 +181,7 @@ const AboutSection: React.FC = () => {
                   Crafted with passion by
                 </div>
                 <div className='flex justify-center'>
-                  <img src={SIGNATURE} alt='Intekhab Ansari Signature' className='w-28' />
+                  <img src={getImageSrc(SIGNATURE)} alt='Intekhab Ansari Signature' className='w-28' />
                 </div>
                 <div className='text-lg font-medium text-blue-500 mt-2'>
                   Intekhab Ansari
