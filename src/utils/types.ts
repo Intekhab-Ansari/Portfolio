@@ -28,6 +28,22 @@ export interface Project {
   seoBadge?: string;
 }
 
+export interface ToolItem {
+  id: number | string;
+  title: string;
+  tagline?: string;
+  description: string;
+  image: any;
+  qrImage?: any;
+  tags: string[];
+  liveUrl: string;
+  githubUrl?: string;
+  featured?: boolean;
+  category: string;
+  badge?: string;
+  isUpcoming?: boolean;
+}
+
 export interface JourneyStep {
   year: string;
   title: string;
