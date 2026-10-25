@@ -26,6 +26,8 @@ import Project_img_3 from "../assets/images/profile-img-3.png";
 import Project_img_4 from "../assets/images/profile-img-4.png";
 import Project_img_5 from "../assets/images/profile-img-5.png";
 import Project_img_6 from "../assets/images/profile-img-6.png";
+import IntekChat_img from "../assets/images/intekchat-preview.jpg";
+import IntekChat_QR from "../assets/images/intekchat-qr.svg";
 
 import Live_img_1 from "../assets/images/live-tiffinwales.png";
 import Live_img_2 from "../assets/images/live-quantorra.png";
@@ -276,16 +278,52 @@ export const PROJECTS: Project[] = [
     },
     {
         id: 6,
-        title: "Upcoming.....",
-        description: "",
-        image: Project_img_6,
-        tags: ["", "", ""],
-        liveUrl: "#",
-        githubUrl: "#",
-        featured: false,
-        category: "Full ",
+        title: "IntekChat & IntekDrop",
+        description: "High-speed WebRTC peer-to-peer file transfer and anonymous end-to-end encrypted room chat with zero server storage and ephemeral view-once media.",
+        image: IntekChat_img,
+        tags: ["Next.js", "WebRTC", "P2P", "Tailwind CSS", "E2EE", "Crypto"],
+        liveUrl: "https://intekchat.vercel.app/",
+        githubUrl: "https://github.com/Intekhab-Ansari/IntekChat",
+        featured: true,
+        category: "Web Tool",
     },
 ];
+
+export const TOOLS_DATA = {
+    flagship: {
+        id: "intekchat",
+        title: "IntekChat & IntekDrop",
+        tagline: "High-Speed P2P File Transfer & Private Encrypted Chat",
+        description: "A decentralized, browser-native utility combining lightning-fast peer-to-peer file transfers (AirDrop for the web) with anonymous, zero-knowledge encrypted chat rooms and self-destructing View-Once media.",
+        image: IntekChat_img,
+        qrImage: IntekChat_QR,
+        liveUrl: "https://intekchat.vercel.app/",
+        githubUrl: "https://github.com/Intekhab-Ansari/IntekChat",
+        status: "Production Ready",
+        category: "P2P Web Utility",
+        techStack: [
+            "Next.js 15",
+            "WebRTC P2P",
+            "Web Crypto (AES-GCM)",
+            "Tailwind CSS",
+            "Socket.io",
+            "Zero Cloud Storage",
+        ],
+        metrics: [
+            { label: "P2P Speed", value: "Up to 100+ MB/s", description: "Direct local network bandwidth without server throttling" },
+            { label: "Cloud Retention", value: "0 Bytes", description: "Pure client-side streaming; nothing stored on any server" },
+            { label: "Pairing Time", value: "< 2 Seconds", description: "Instant QR camera scan or local Wi-Fi radar detection" },
+            { label: "Privacy Grade", value: "Zero-Knowledge", description: "No account, no phone number, ephemeral disposable rooms" },
+        ],
+    },
+    upcoming: {
+        title: "DevPulse API & Payload Studio",
+        tagline: "Client-Side JWT, JSON & Webhook Inspector",
+        description: "A lightweight, privacy-hardened developer workbench for inspecting API payloads, formatting massive JSON streams, and testing regex without third-party analytics.",
+        tags: ["TypeScript", "WebAssembly", "IndexedDB", "Client-Only"],
+        status: "In Active Development",
+    },
+};
 
 export const JOURNEY_STEPS: JourneyStep[] = [
     {

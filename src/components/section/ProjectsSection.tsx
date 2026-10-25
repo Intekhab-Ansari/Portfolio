@@ -7,6 +7,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { PROJECTS, LIVE_PROJECTS } from "../../utils/data";
 import BackgroundPattern from '../BackgroundPattern';
 import ProjectCards from '../ProjectCards';
+import ToolsSection from './ToolsSection';
 import { containerVariants, itemVariants } from '../../utils/helper';
 
 const ProjectsSection: React.FC = () => {
@@ -74,6 +75,11 @@ const ProjectsSection: React.FC = () => {
         </motion.div>
 
         <hr className={`border-t mb-24 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`} />
+
+        {/* --- Tools Section (IntekChat & Utilities) --- */}
+        <ToolsSection isDarkMode={isDarkMode} />
+
+        <hr className={`border-t mb-24 mt-24 ${isDarkMode ? 'border-slate-800' : 'border-slate-200'}`} />
 
         {/* --- Recent Projects Section Header --- */}
         <motion.div

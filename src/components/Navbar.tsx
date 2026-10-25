@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
     };
 
     useEffect(() => {
-        const sections = ["home", "work", "skills", "about", "contact"];
+        const sections = ["home", "work", "tools", "skills", "about", "contact"];
         const handleScroll = () => {
             const scrollPosition = window.scrollY + 200;
             for (const sectionId of sections) {
@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
 
                     {/* Desktop Navigation */}
                     <div className='hidden md:flex items-center space-x-8'>
-                        {["Home", "Work", "Skills", "About", "Contact"].map((item) => (
+                        {["Home", "Work", "Tools", "Skills", "About", "Contact"].map((item) => (
                             <motion.button
                                 key={item}
                                 whileHover={{ y: -2 }}
