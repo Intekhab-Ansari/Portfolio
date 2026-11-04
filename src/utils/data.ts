@@ -29,6 +29,7 @@ import Project_img_6 from "../assets/images/profile-img-6.png";
 import IntekChat_img from "../assets/images/intekchat-preview.jpg";
 import IntekChat_QR from "../assets/images/intekchat-qr.svg";
 import EditAnything_img from "../assets/images/editanything-preview.jpg";
+import IntekEdit_img from "../assets/images/intekedit-preview.jpg";
 
 import Live_img_1 from "../assets/images/live-tiffinwales.png";
 import Live_img_2 from "../assets/images/live-quantorra.png";
@@ -289,6 +290,17 @@ export const PROJECTS: Project[] = [
         featured: true,
         category: "Web Tool",
     },
+    {
+        id: 7,
+        title: "IntekEdit — Document & Photo Suite",
+        description: "All-in-one privacy-first document and photo engineering suite executed entirely on-device with zero server uploads. Features PDF vector editing, target KB compression, merging, and EXIF stripping.",
+        image: IntekEdit_img,
+        tags: ["Next.js", "WebAssembly", "PDF Engine", "Photo Suite", "Zero Storage"],
+        liveUrl: "https://intekedit.vercel.app/",
+        githubUrl: "https://github.com/Intekhab-Ansari/document-solution",
+        featured: true,
+        category: "Web Tool",
+    },
 ];
 
 export const TOOLS: ToolItem[] = [
@@ -308,17 +320,17 @@ export const TOOLS: ToolItem[] = [
     },
     {
         id: 2,
-        title: "EditAnything — Document Studio",
-        tagline: "Privacy-First All-in-One PDF & Document Tools",
-        description: "Client-side document and PDF suite for reordering, splitting, merging, rotating, and managing pages completely inside your browser with zero server uploads.",
-        image: EditAnything_img,
-        tags: ["WebAssembly", "PDF Engine", "Client-Side", "TypeScript", "Offline-Ready"],
-        liveUrl: "#",
+        title: "IntekEdit — Document & Photo Suite",
+        tagline: "Privacy-First All-in-One PDF & Image Engine",
+        description: "Professional client-side document and photo engineering executed directly in your browser memory with zero cloud uploads. Direct in-place vector editing, exact target KB compression, merging, splitting, and EXIF stripping with zero server egress.",
+        image: IntekEdit_img,
+        tags: ["Next.js", "WebAssembly", "Vector Engine", "PDF & Photo Suite", "Zero Cloud Storage"],
+        liveUrl: "https://intekedit.vercel.app/",
         githubUrl: "https://github.com/Intekhab-Ansari/document-solution",
-        featured: false,
+        featured: true,
         category: "Browser Utility",
-        badge: "🛠️ In Development",
-        isUpcoming: true,
+        badge: "⚡ 100% On-Device Engine",
+        isUpcoming: false,
     },
 ];
 

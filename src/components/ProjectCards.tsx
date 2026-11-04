@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { ExternalLink, Trophy } from "lucide-react";
+import { ExternalLink, Trophy, ArrowUpRight } from "lucide-react";
 import { FiGithub } from "react-icons/fi";
 import { Project } from "../utils/types";
 
@@ -140,8 +140,44 @@ const ProjectCards: React.FC<ProjectCardsProps> = ({ project, index, isDarkMode 
                         </div>
                     )}
 
-                    <h3 className="text-xl font-medium mb-3 group-hover:text-blue-500 transition-colors">
-                        {project.title}
+                    <h3 className="text-xl font-medium mb-3">
+                        {project.liveUrl && project.liveUrl !== "#" ? (
+                            <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group/title inline-flex items-center justify-between w-full hover:text-blue-500 transition-colors cursor-pointer"
+                                title={`Open ${project.title}`}
+                            >
+                                <span className="group-hover/title:text-blue-500 transition-colors">
+                                    {project.title}
+                                </span>
+                                <ArrowUpRight
+                                    size={20}
+                                    className="opacity-70 group-hover:opacity-100 group-hover/title:opacity-100 text-blue-500 transition-all group-hover/title:-translate-y-0.5 group-hover/title:translate-x-0.5 shrink-0 ml-2"
+                                />
+                            </a>
+                        ) : project.githubUrl && project.githubUrl !== "#" ? (
+                            <a
+                                href={project.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group/title inline-flex items-center justify-between w-full hover:text-blue-500 transition-colors cursor-pointer"
+                                title={`View ${project.title} on GitHub`}
+                            >
+                                <span className="group-hover/title:text-blue-500 transition-colors">
+                                    {project.title}
+                                </span>
+                                <ArrowUpRight
+                                    size={20}
+                                    className="opacity-70 group-hover:opacity-100 group-hover/title:opacity-100 text-blue-500 transition-all group-hover/title:-translate-y-0.5 group-hover/title:translate-x-0.5 shrink-0 ml-2"
+                                />
+                            </a>
+                        ) : (
+                            <span className="group-hover:text-blue-500 transition-colors">
+                                {project.title}
+                            </span>
+                        )}
                     </h3>
 
                     <p

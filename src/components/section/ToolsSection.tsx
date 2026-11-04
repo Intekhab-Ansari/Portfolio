@@ -208,10 +208,27 @@ const ToolsSection: React.FC<ToolsSectionProps> = ({ isDarkMode }) => {
                                     )}
 
                                     {/* Title */}
-                                    <h3 className="text-xl font-medium mb-2 group-hover:text-blue-500 transition-colors flex items-center justify-between">
-                                        <span>{tool.title}</span>
-                                        {tool.liveUrl && tool.liveUrl !== "#" && (
-                                            <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 text-blue-500 transition-all -translate-y-1 translate-x-1" />
+                                    <h3 className="text-xl font-medium mb-2">
+                                        {tool.liveUrl && tool.liveUrl !== "#" ? (
+                                            <a
+                                                href={tool.liveUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="group/title inline-flex items-center justify-between w-full hover:text-blue-500 transition-colors cursor-pointer"
+                                                title={`Open ${tool.title}`}
+                                            >
+                                                <span className="group-hover/title:text-blue-500 transition-colors">
+                                                    {tool.title}
+                                                </span>
+                                                <ArrowUpRight
+                                                    size={20}
+                                                    className="opacity-70 group-hover:opacity-100 group-hover/title:opacity-100 text-blue-500 transition-all group-hover/title:-translate-y-0.5 group-hover/title:translate-x-0.5 shrink-0 ml-2"
+                                                />
+                                            </a>
+                                        ) : (
+                                            <span className="group-hover:text-blue-500 transition-colors">
+                                                {tool.title}
+                                            </span>
                                         )}
                                     </h3>
 
