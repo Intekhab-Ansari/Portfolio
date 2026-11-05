@@ -290,17 +290,6 @@ export const PROJECTS: Project[] = [
         featured: true,
         category: "Web Tool",
     },
-    {
-        id: 7,
-        title: "IntekEdit — Document & Photo Suite",
-        description: "All-in-one privacy-first document and photo engineering suite executed entirely on-device with zero server uploads. Features PDF vector editing, target KB compression, merging, and EXIF stripping.",
-        image: IntekEdit_img,
-        tags: ["Next.js", "WebAssembly", "PDF Engine", "Photo Suite", "Zero Storage"],
-        liveUrl: "https://intekedit.vercel.app/",
-        githubUrl: "https://github.com/Intekhab-Ansari/document-solution",
-        featured: true,
-        category: "Web Tool",
-    },
 ];
 
 export const TOOLS: ToolItem[] = [
