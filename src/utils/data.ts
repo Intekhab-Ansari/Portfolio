@@ -279,17 +279,6 @@ export const PROJECTS: Project[] = [
         featured: false,
         category: "Full Stack",
     },
-    {
-        id: 6,
-        title: "IntekChat & IntekDrop",
-        description: "High-speed WebRTC peer-to-peer file transfer and anonymous end-to-end encrypted room chat with zero server storage and ephemeral view-once media.",
-        image: IntekChat_img,
-        tags: ["Next.js", "WebRTC", "P2P", "Tailwind CSS", "E2EE", "Crypto"],
-        liveUrl: "https://intekchat.vercel.app/",
-        githubUrl: "https://github.com/Intekhab-Ansari/IntekChat",
-        featured: true,
-        category: "Web Tool",
-    },
 ];
 
 export const TOOLS: ToolItem[] = [
