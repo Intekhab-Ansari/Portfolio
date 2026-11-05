@@ -292,7 +292,7 @@ Ask me anything about Intekhab's:
                                 <X size={22} className="transition-transform duration-300 group-hover:rotate-90" />
                             </div>
                         ) : (
-                            <AiLogo size={28} isDarkMode={isDarkMode} />
+                            <AiLogo size={32} isDarkMode={isDarkMode} />
                         )}
                     </div>
 
