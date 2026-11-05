@@ -7,6 +7,7 @@ import ProjectsSection from '../components/section/ProjectsSection';
 import AboutSection from '../components/section/AboutSection';
 import ContactSection from '../components/section/ContactSection';
 import Footer from '../components/section/Footer';
+import AiAssistant from '../components/AiAssistant';
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <AboutSection />
         <ContactSection />
         <Footer />
+        <AiAssistant />
       </div>
     </ThemeProvider>
   );
